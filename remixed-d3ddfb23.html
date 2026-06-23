@@ -1,0 +1,666 @@
+<!DOCTYPE html>
+<html lang="ms">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<title>ZUZZ THERAPY — Restorasi Biomekanik Manusia</title>
+<link rel="preconnect" href="https://fonts.googleapis.com"/>
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,500;0,600;1,400;1,500&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet"/>
+<style>
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+
+:root{
+  --cream:#FAF9F5;
+  --charcoal:#1C1C1C;
+  --mud:#5A5A54;
+  --olive:#344235;
+  --olive-hover:#2a3629;
+  --border:rgba(28,28,28,0.12);
+  --border-strong:rgba(28,28,28,0.22);
+}
+
+html{scroll-behavior:smooth}
+
+body{
+  background:var(--cream);
+  color:var(--charcoal);
+  font-family:'Inter',sans-serif;
+  font-weight:300;
+  -webkit-font-smoothing:antialiased;
+  overflow-x:hidden;
+}
+
+::selection{background:var(--olive);color:var(--cream)}
+
+/* ── NAV ── */
+nav{
+  position:fixed;top:0;left:0;right:0;z-index:100;
+  display:flex;align-items:center;justify-content:space-between;
+  padding:1.5rem 4rem;
+  background:rgba(250,249,245,0.92);
+  backdrop-filter:blur(14px);
+  border-bottom:1px solid var(--border);
+  transition:box-shadow 0.5s ease;
+}
+.nav-logo{
+  font-family:'Playfair Display',Georgia,serif;
+  font-weight:600;font-size:1rem;
+  letter-spacing:0.22em;
+  color:var(--charcoal);text-decoration:none;
+}
+.nav-tag{
+  font-size:0.65rem;letter-spacing:0.22em;
+  text-transform:uppercase;color:var(--mud);
+  font-family:'Inter',sans-serif;font-weight:500;
+}
+
+/* ── HERO ── */
+.hero{
+  min-height:100vh;
+  display:flex;flex-direction:column;justify-content:center;
+  padding:10rem 4rem 6rem;
+  max-width:1200px;margin:0 auto;
+  position:relative;
+}
+.hero-eyebrow{
+  font-size:0.65rem;letter-spacing:0.32em;
+  text-transform:uppercase;color:var(--mud);
+  margin-bottom:2rem;
+  display:flex;align-items:center;gap:1rem;
+}
+.hero-eyebrow::before{
+  content:'';display:inline-block;
+  width:2.5rem;height:1px;background:var(--mud);
+}
+.hero h1{
+  font-family:'Playfair Display',Georgia,serif;
+  font-size:clamp(3rem,7vw,6rem);
+  font-weight:500;line-height:1.08;
+  letter-spacing:-0.02em;
+  color:var(--charcoal);
+  max-width:860px;margin-bottom:2rem;
+}
+.hero h1 em{font-style:italic;font-weight:400}
+.hero-sub{
+  font-size:clamp(0.85rem,1.4vw,0.98rem);
+  line-height:1.9;color:var(--mud);
+  letter-spacing:0.03em;
+  max-width:580px;margin-bottom:3rem;
+}
+.btn-primary{
+  display:inline-block;
+  padding:1.05rem 2.4rem;
+  background:var(--charcoal);color:var(--cream);
+  font-family:'Inter',sans-serif;
+  font-size:0.7rem;font-weight:500;
+  letter-spacing:0.2em;text-transform:uppercase;
+  text-decoration:none;
+  border:1px solid var(--charcoal);
+  transition:all 0.45s ease;
+}
+.btn-primary:hover{background:transparent;color:var(--charcoal)}
+
+.hero-scroll{
+  position:absolute;bottom:3rem;right:4rem;
+  display:flex;flex-direction:column;align-items:center;gap:0.6rem;
+  font-size:0.58rem;letter-spacing:0.22em;
+  text-transform:uppercase;color:var(--mud);
+}
+.hero-scroll-line{
+  width:1px;height:3.5rem;
+  background:linear-gradient(to bottom,var(--mud),transparent);
+  animation:scrollDrop 2s ease-in-out infinite;
+}
+@keyframes scrollDrop{
+  0%,100%{transform:scaleY(1);opacity:1}
+  50%{transform:scaleY(0.5);opacity:0.35}
+}
+
+/* ── SECTION UTILS ── */
+section{padding:7rem 4rem}
+.container{max-width:1200px;margin:0 auto}
+.section-label{
+  font-size:0.6rem;letter-spacing:0.3em;
+  text-transform:uppercase;color:var(--mud);
+  margin-bottom:3.5rem;
+  display:flex;align-items:center;gap:1rem;
+  font-family:'Inter',sans-serif;font-weight:500;
+}
+.section-label::after{
+  content:'';width:2.5rem;height:1px;
+  background:var(--border-strong);
+}
+
+/* ── PHILOSOPHY ── */
+.philosophy{
+  background:var(--charcoal);color:var(--cream);
+  border-top:1px solid var(--border);
+}
+.philosophy .section-label{color:rgba(250,249,245,0.3)}
+.philosophy .section-label::after{background:rgba(250,249,245,0.12)}
+.phil-inner{
+  max-width:860px;margin:0 auto;
+  text-align:center;position:relative;padding:2rem 3rem;
+}
+.quote-mark{
+  font-family:'Playfair Display',serif;
+  font-size:9rem;line-height:0;
+  color:var(--olive);opacity:0.35;
+  position:absolute;top:2.5rem;left:0;
+  user-select:none;
+}
+.quote-mark.right{left:auto;right:0;top:auto;bottom:2rem}
+.philosophy blockquote{
+  font-family:'Playfair Display',Georgia,serif;
+  font-size:clamp(1.2rem,2.5vw,1.9rem);
+  font-weight:400;font-style:italic;
+  line-height:1.7;
+  color:rgba(250,249,245,0.9);
+  margin-bottom:2rem;
+  position:relative;z-index:1;
+}
+.phil-divider{
+  width:2.5rem;height:1px;
+  background:var(--olive);
+  margin:0 auto 1.2rem;
+}
+.phil-cite{
+  font-size:0.62rem;letter-spacing:0.25em;
+  text-transform:uppercase;
+  color:rgba(250,249,245,0.35);
+  font-family:'Inter',sans-serif;
+}
+
+/* ── METHODOLOGY ── */
+.methodology{background:var(--charcoal);padding-top:0}
+.methodology .section-label{color:rgba(250,249,245,0.35)}
+.methodology .section-label::after{background:rgba(250,249,245,0.12)}
+.method-grid{
+  display:grid;grid-template-columns:repeat(3,1fr);
+  border:1px solid rgba(250,249,245,0.1);
+}
+.method-col{
+  padding:3.2rem 2.6rem;
+  border-right:1px solid rgba(250,249,245,0.1);
+  position:relative;overflow:hidden;
+  transition:background 0.5s ease;
+}
+.method-col:last-child{border-right:none}
+.method-col::before{
+  content:'';
+  position:absolute;bottom:0;left:0;
+  width:100%;height:0;
+  background:var(--olive);
+  transition:height 0.55s ease;z-index:0;
+}
+.method-col:hover::before{height:100%}
+.method-col>*{position:relative;z-index:1}
+.method-icon{width:30px;height:30px;margin-bottom:1.6rem}
+.method-num{
+  font-size:0.6rem;letter-spacing:0.28em;
+  color:rgba(250,249,245,0.3);
+  margin-bottom:1.6rem;display:block;
+  font-family:'Inter',sans-serif;font-weight:500;
+}
+.method-title{
+  font-family:'Playfair Display',serif;
+  font-size:1.65rem;font-weight:500;
+  margin-bottom:1.4rem;color:var(--cream);
+}
+.method-sub{
+  font-size:0.62rem;letter-spacing:0.18em;
+  text-transform:uppercase;
+  color:rgba(250,249,245,0.2);
+  margin-bottom:1rem;display:block;
+  font-family:'Inter',sans-serif;
+  transition:color 0.4s ease;
+}
+.method-col:hover .method-sub{color:rgba(250,249,245,0.5)}
+.method-body{
+  font-size:0.8rem;line-height:1.9;
+  color:rgba(250,249,245,0.45);
+  transition:color 0.4s ease;
+}
+.method-col:hover .method-body{color:rgba(250,249,245,0.78)}
+
+/* ── SERVICE ── */
+.service{background:var(--cream)}
+.service-card{
+  border:1px solid var(--border-strong);
+  max-width:700px;margin:0 auto;
+  padding:4rem 4.5rem;
+  position:relative;background:white;
+  box-shadow:0 2px 40px rgba(28,28,28,0.04);
+}
+.service-card::before{
+  content:'SESI KLINIKAL';
+  position:absolute;top:-0.55rem;left:50%;
+  transform:translateX(-50%);
+  background:var(--cream);
+  padding:0 1.2rem;
+  font-size:0.56rem;letter-spacing:0.35em;
+  color:var(--mud);font-family:'Inter',sans-serif;
+}
+.spec-badge{
+  position:absolute;top:0;right:0;
+  background:var(--charcoal);color:var(--cream);
+  font-size:0.55rem;letter-spacing:0.22em;
+  text-transform:uppercase;padding:0.3rem 0.9rem;
+  font-family:'Inter',sans-serif;font-weight:500;
+}
+.service-tag{
+  display:inline-block;
+  font-size:0.58rem;letter-spacing:0.22em;
+  text-transform:uppercase;
+  color:var(--olive);border:1px solid var(--olive);
+  padding:0.28rem 0.85rem;margin-bottom:1.6rem;
+}
+.service-title{
+  font-family:'Playfair Display',serif;
+  font-size:clamp(1.4rem,2.5vw,1.85rem);
+  font-weight:500;margin-bottom:0.4rem;line-height:1.3;
+}
+.service-sub{
+  font-size:0.62rem;letter-spacing:0.18em;
+  text-transform:uppercase;color:var(--mud);
+  font-family:'Inter',sans-serif;margin-bottom:1.6rem;
+}
+.service-divider{
+  width:2.5rem;height:1px;
+  background:var(--border-strong);margin:1.6rem 0;
+}
+.price-row{
+  display:flex;align-items:baseline;
+  justify-content:space-between;margin-bottom:0.4rem;
+}
+.price-label{
+  font-size:0.62rem;letter-spacing:0.15em;
+  text-transform:uppercase;color:var(--mud);
+  font-family:'Inter',sans-serif;
+}
+.price-display{display:flex;align-items:baseline;gap:0.3rem}
+.price-currency{font-size:0.85rem;font-weight:500;color:var(--mud)}
+.price-amount{
+  font-family:'Playfair Display',serif;
+  font-size:3rem;font-weight:500;
+  line-height:1;color:var(--charcoal);
+}
+.price-note{
+  font-size:0.62rem;color:var(--mud);
+  letter-spacing:0.1em;margin-bottom:2.4rem;
+  font-family:'Inter',sans-serif;
+}
+.service-list{
+  list-style:none;
+  display:flex;flex-direction:column;gap:0.9rem;
+  margin-bottom:2.8rem;
+}
+.service-list li{
+  display:flex;align-items:flex-start;gap:0.9rem;
+  font-size:0.8rem;line-height:1.75;color:var(--mud);
+}
+.service-list li svg{flex-shrink:0;margin-top:3px}
+.service-note{
+  font-size:0.6rem;letter-spacing:0.12em;
+  text-transform:uppercase;color:var(--mud);
+  text-align:center;margin-top:0.9rem;
+  font-family:'Inter',sans-serif;opacity:0.7;
+}
+
+/* ── AUDIENCE ── */
+.audience{background:#F0EEE8;border-top:1px solid var(--border)}
+.audience-grid{
+  display:grid;grid-template-columns:repeat(3,1fr);
+  gap:2px;background:var(--border);
+}
+.audience-card{
+  background:#F0EEE8;padding:3rem 2.4rem;
+  transition:background 0.45s ease;
+}
+.audience-card:hover{background:var(--cream)}
+.audience-num{
+  font-size:0.56rem;letter-spacing:0.25em;
+  color:var(--mud);opacity:0.45;
+  margin-bottom:1.2rem;display:block;
+  font-family:'Inter',sans-serif;
+}
+.audience-icon{margin-bottom:1.6rem;width:34px;height:34px}
+.audience-title{
+  font-family:'Playfair Display',serif;
+  font-size:1.1rem;font-weight:500;
+  margin-bottom:0.8rem;line-height:1.4;
+}
+.audience-body{
+  font-size:0.78rem;line-height:1.9;color:var(--mud);
+}
+
+/* ── FOOTER ── */
+footer{
+  background:var(--olive);color:var(--cream);
+  padding:6rem 4rem 4rem;
+}
+.footer-inner{max-width:1200px;margin:0 auto}
+.footer-avail{
+  font-size:0.6rem;letter-spacing:0.28em;
+  text-transform:uppercase;
+  color:rgba(250,249,245,0.35);
+  margin-bottom:1.4rem;display:block;
+  font-family:'Inter',sans-serif;
+}
+.footer-statement{
+  font-family:'Playfair Display',serif;
+  font-size:clamp(1.3rem,2.8vw,2rem);
+  font-weight:400;font-style:italic;
+  line-height:1.6;
+  color:rgba(250,249,245,0.88);
+  max-width:660px;margin-bottom:3.2rem;
+}
+.btn-whatsapp{
+  display:inline-flex;align-items:center;gap:0.75rem;
+  padding:1.05rem 2.2rem;
+  border:1px solid rgba(250,249,245,0.4);
+  color:var(--cream);
+  font-size:0.7rem;font-weight:500;
+  letter-spacing:0.18em;text-transform:uppercase;
+  text-decoration:none;
+  font-family:'Inter',sans-serif;
+  transition:all 0.45s ease;margin-bottom:4rem;
+}
+.btn-whatsapp:hover{
+  background:rgba(250,249,245,0.1);
+  border-color:var(--cream);
+}
+.footer-divider{
+  width:100%;height:1px;
+  background:rgba(250,249,245,0.1);
+  margin-bottom:2.8rem;
+}
+.footer-bottom{
+  display:flex;justify-content:space-between;
+  align-items:flex-end;flex-wrap:wrap;gap:2rem;
+}
+.footer-logo{
+  font-family:'Playfair Display',serif;
+  font-size:0.85rem;letter-spacing:0.25em;
+  color:rgba(250,249,245,0.4);
+}
+.footer-copy{
+  font-size:0.6rem;letter-spacing:0.1em;
+  color:rgba(250,249,245,0.3);
+  font-family:'Inter',sans-serif;
+}
+.footer-areas{
+  font-size:0.62rem;letter-spacing:0.1em;
+  color:rgba(250,249,245,0.4);
+  font-family:'Inter',sans-serif;text-align:right;
+}
+.footer-areas strong{
+  display:block;font-size:0.55rem;
+  letter-spacing:0.25em;text-transform:uppercase;
+  color:rgba(250,249,245,0.22);
+  margin-bottom:0.4rem;font-weight:400;
+}
+
+/* ── FADE-UP ANIMATION ── */
+.fade-up{
+  opacity:0;transform:translateY(30px);
+  transition:opacity 0.72s ease,transform 0.72s ease;
+}
+.fade-up.visible{opacity:1;transform:translateY(0)}
+
+/* ── RESPONSIVE ── */
+@media(max-width:900px){
+  nav{padding:1.3rem 1.5rem}
+  .nav-tag{display:none}
+  section{padding:5rem 1.5rem}
+  .hero{padding:8rem 1.5rem 5rem}
+  .method-grid{grid-template-columns:1fr}
+  .method-col{border-right:none;border-bottom:1px solid rgba(250,249,245,0.1)}
+  .method-col:last-child{border-bottom:none}
+  .audience-grid{grid-template-columns:1fr}
+  .service-card{padding:2.8rem 1.8rem}
+  .phil-inner{padding:1rem 0.5rem}
+  footer{padding:4rem 1.5rem 3rem}
+  .footer-bottom{flex-direction:column;align-items:flex-start}
+  .footer-areas{text-align:left}
+  .hero-scroll{display:none}
+}
+</style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav id="main-nav">
+  <a href="#" class="nav-logo">ZUZZ THERAPY</a>
+  <span class="nav-tag">MSR Klinikal &bull; Pakar Terapi Mobil</span>
+</nav>
+
+<!-- HERO -->
+<div class="hero">
+  <p class="hero-eyebrow fade-up">Kalibrasi Semula Paksi Fizikal · Lembah Klang</p>
+  <h1 class="fade-up">Restorasi Biomekanik <em>Manusia.</em></h1>
+  <p class="hero-sub fade-up">Terapi klinikal mobil premium dan sistem Motion Specific Release (MSR) yang direkayasa khusus demi mengembalikan resonans semula jadi tubuh. Melampaui metodologi urutan konvensional — menyampaikan ketepatan struktural mutlak, terus ke ruang privasi eksklusif anda di seluruh Lembah Klang.</p>
+  <div class="fade-up">
+    <a href="https://wa.me/60174916815" target="_blank" rel="noopener" class="btn-primary">Tempah Sesi Pakar</a>
+  </div>
+  <div class="hero-scroll">
+    <div class="hero-scroll-line"></div>
+    Tatal
+  </div>
+</div>
+
+<!-- PHILOSOPHY -->
+<section class="philosophy">
+  <div class="container">
+    <div class="section-label fade-up" style="color:rgba(250,249,245,0.3)">Falsafah</div>
+    <div class="phil-inner fade-up">
+      <span class="quote-mark">"</span>
+      <blockquote>
+        Tubuh manusia bukanlah sekadar medan ketegangan untuk diuli. Ia adalah sebuah sistem kinetik yang jitu — rantaian fasia, jalur saraf, dan seni bina struktur yang menuntut kebijaksanaan klinikal, bukan sekadar sentuhan biasa.
+      </blockquote>
+      <span class="quote-mark right">"</span>
+      <div class="phil-divider"></div>
+      <p class="phil-cite">— Teori Resonans Semula Jadi Zuzz</p>
+    </div>
+  </div>
+</section>
+
+<!-- METHODOLOGY -->
+<section class="methodology">
+  <div class="container">
+    <div class="section-label fade-up" style="color:rgba(250,249,245,0.32);margin-bottom:2.5rem">Kerangka Kerja</div>
+    <div class="method-grid fade-up">
+
+      <!-- RELEASE -->
+      <div class="method-col">
+        <svg class="method-icon" viewBox="0 0 30 30" fill="none" stroke="rgba(250,249,245,0.55)" stroke-width="1.2">
+          <circle cx="15" cy="15" r="11"/>
+          <circle cx="15" cy="15" r="4"/>
+          <path d="M15 4v4M15 22v4M4 15h4M22 15h4"/>
+          <path d="M7.5 7.5l2.8 2.8M19.7 19.7l2.8 2.8M22.5 7.5l-2.8 2.8M10.3 19.7l-2.8 2.8"/>
+        </svg>
+        <span class="method-num">01</span>
+        <span class="method-sub">Reprogram / Pelepasan</span>
+        <h3 class="method-title">Release</h3>
+        <p class="method-body">Memburu titik cetusan aktif, meruraikan fibrosis fasia dan tisu parut, serta memulihkan perfusi iskemik pada jaringan otot dalaman yang kronik — membebaskan struktur dari genggaman ketegangan tertunggak.</p>
+      </div>
+
+      <!-- STRETCH -->
+      <div class="method-col">
+        <svg class="method-icon" viewBox="0 0 30 30" fill="none" stroke="rgba(250,249,245,0.55)" stroke-width="1.2">
+          <path d="M5 25L25 5"/>
+          <path d="M5 5h8M25 25h-8"/>
+          <path d="M5 25l6-6M25 5l-6 6"/>
+          <circle cx="15" cy="15" r="4"/>
+        </svg>
+        <span class="method-num">02</span>
+        <span class="method-sub">Decompress / Regangan</span>
+        <h3 class="method-title">Stretch</h3>
+        <p class="method-body">Dekompresi sekatan struktural dan pembukaan gerbang kinetik melalui pemanjangan metodikal. Jalur otot yang tersekat dibebaskan secara beransur, memulihkan litar pergerakan penuh dan laluan beban semula jadi.</p>
+      </div>
+
+      <!-- POWER -->
+      <div class="method-col">
+        <svg class="method-icon" viewBox="0 0 30 30" fill="none" stroke="rgba(250,249,245,0.55)" stroke-width="1.2">
+          <path d="M15 4v22"/>
+          <path d="M8 10l7-6 7 6"/>
+          <path d="M8 20l7 6 7-6"/>
+          <path d="M4 15h5M21 15h5"/>
+          <circle cx="15" cy="15" r="2.5"/>
+        </svg>
+        <span class="method-num">03</span>
+        <span class="method-sub">Stabilize / Pengukuhan</span>
+        <h3 class="method-title">Power</h3>
+        <p class="method-body">Latihan semula sistem saraf tunjang melalui protokol bebanan isometrik dan Heavy Slow Resistance — membina kawalan neuro yang mapan, mengekod kekuatan di mana kelemahan pernah diterima sebagai norma.</p>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- SERVICE -->
+<section class="service">
+  <div class="container">
+    <div class="section-label fade-up">Tawaran Spesialis</div>
+    <div class="service-card fade-up">
+      <div class="spec-badge">SPEC-2026</div>
+      <span class="service-tag">Kadar Tetap Spesialis</span>
+      <h2 class="service-title">Clinical Soft Tissue &amp; MSR Session</h2>
+      <p class="service-sub">Persekitaran Klinikal Bergerak &bull; Ruang Privasi Anda</p>
+      <div class="service-divider"></div>
+      <div class="price-row">
+        <span class="price-label">Nilai Pelaburan Sesi</span>
+        <div class="price-display">
+          <span class="price-currency">RM</span>
+          <span class="price-amount">249</span>
+        </div>
+      </div>
+      <p class="price-note">Per sesi &nbsp;·&nbsp; Mobil ke lokasi anda &nbsp;·&nbsp; Bayaran pasca-rawatan</p>
+      <ul class="service-list">
+        <li>
+          <svg width="14" height="14" viewBox="0 0 14 14" fill="none" stroke="#344235" stroke-width="1.6">
+            <path d="M2 7.5l3.5 3.5 6.5-7" stroke-linecap="round" stroke-linejoin="round"/>
+          </svg>
+          Penilaian Biomekanik &amp; Fungsional Komprehensif
+        </li>
+        <li>
+          <svg width="14" height="14" viewBox="0 0 14 14" fill="none" stroke="#344235" stroke-width="1.6">
+            <path d="M2 7.5l3.5 3.5 6.5-7" stroke-linecap="round" stroke-linejoin="round"/>
+          </svg>
+          Pelaksanaan Protokol Jitu Motion Specific Release (MSR)
+        </li>
+        <li>
+          <svg width="14" height="14" viewBox="0 0 14 14" fill="none" stroke="#344235" stroke-width="1.6">
+            <path d="M2 7.5l3.5 3.5 6.5-7" stroke-linecap="round" stroke-linejoin="round"/>
+          </svg>
+          Palpasi Mendalam &amp; Pelepasan Lekatan Antara Otot (Adhesion)
+        </li>
+        <li>
+          <svg width="14" height="14" viewBox="0 0 14 14" fill="none" stroke="#344235" stroke-width="1.6">
+            <path d="M2 7.5l3.5 3.5 6.5-7" stroke-linecap="round" stroke-linejoin="round"/>
+          </svg>
+          Logistik Mobil Premium — Ekosistem rawatan dibawa terus ke ruang privasi anda
+        </li>
+      </ul>
+      <a href="https://wa.me/60174916815" target="_blank" rel="noopener" class="btn-primary" style="display:block;text-align:center;width:100%">Semak Kekosongan Slot Via WhatsApp</a>
+      <p class="service-note">Tiada transaksi deposit digital. Pembayaran dilakukan pasca-rawatan.</p>
+    </div>
+  </div>
+</section>
+
+<!-- AUDIENCE -->
+<section class="audience">
+  <div class="container">
+    <div class="section-label fade-up">Direka Khas Untuk</div>
+    <div class="audience-grid fade-up">
+
+      <div class="audience-card">
+        <span class="audience-num">Profil 01</span>
+        <svg class="audience-icon" viewBox="0 0 34 34" fill="none" stroke="#344235" stroke-width="1.2">
+          <circle cx="17" cy="9" r="5"/>
+          <path d="M9 28c0-4.4 3.6-8 8-8s8 3.6 8 8"/>
+          <path d="M4 18l5 2.5M30 18l-5 2.5"/>
+          <path d="M7 13l3 2M24 13l-3 2"/>
+        </svg>
+        <h3 class="audience-title">Individu Berprestasi Tinggi</h3>
+        <p class="audience-body">Atlit dan pengamal seni tempur yang menuntut kecekapan kinetik maksimum, pemulihan struktural pantas, serta mobiliti sendi tanpa sekatan untuk output prestasi tertinggi.</p>
+      </div>
+
+      <div class="audience-card">
+        <span class="audience-num">Profil 02</span>
+        <svg class="audience-icon" viewBox="0 0 34 34" fill="none" stroke="#344235" stroke-width="1.2">
+          <rect x="6" y="7" width="22" height="15" rx="1.5"/>
+          <path d="M12 22v5M22 22v5M8 27h18"/>
+          <path d="M10 13h14M10 17h9"/>
+          <circle cx="26" cy="10" r="2.5" fill="#344235" fill-opacity="0.15" stroke="#344235"/>
+        </svg>
+        <h3 class="audience-title">Profesional Korporat</h3>
+        <p class="audience-body">Mereka yang mengalami kemerosotan postur, kelesuan kronik pada kawasan torasik, serta himpitan saraf akibat posisi duduk statik yang berpanjangan dalam persekitaran kerja moden.</p>
+      </div>
+
+      <div class="audience-card">
+        <span class="audience-num">Profil 03</span>
+        <svg class="audience-icon" viewBox="0 0 34 34" fill="none" stroke="#344235" stroke-width="1.2">
+          <circle cx="17" cy="17" r="12"/>
+          <circle cx="17" cy="17" r="3" fill="#344235" fill-opacity="0.2"/>
+          <path d="M17 5v5M17 24v5M5 17h5M24 17h5"/>
+          <path d="M9.1 9.1l3.5 3.5M21.4 21.4l3.5 3.5M24.9 9.1l-3.5 3.5M12.6 21.4l-3.5 3.5"/>
+        </svg>
+        <h3 class="audience-title">Restorasi Paksi Utama</h3>
+        <p class="audience-body">Individu yang berhadapan dengan gangguan vestibular kompleks (vertigo), trauma impak, ketegangan minda-otot kronik, atau herotan jajaran tubuh yang gagal ditangani oleh pendekatan konvensional.</p>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <div class="footer-inner">
+    <span class="footer-avail fade-up">Ketersediaan Terhad</span>
+    <p class="footer-statement fade-up">
+      "Kemasukan slot dihadkan secara ketat setiap minggu bagi memelihara ketepatan klinikal bagi setiap tubuh."
+    </p>
+    <a href="https://wa.me/60174916815" target="_blank" rel="noopener" class="btn-whatsapp fade-up">
+      <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+        <path d="M21 11.5a8.38 8.38 0 01-.9 3.8 8.5 8.5 0 01-7.6 4.7 8.38 8.38 0 01-3.8-.9L3 21l1.9-5.7a8.38 8.38 0 01-.9-3.8 8.5 8.5 0 014.7-7.6 8.38 8.38 0 013.8-.9h.5a8.48 8.48 0 018 8v.5z" stroke-linecap="round" stroke-linejoin="round"/>
+      </svg>
+      Sahkan Slot Anda Sekarang
+    </a>
+    <div class="footer-divider"></div>
+    <div class="footer-bottom">
+      <div>
+        <div class="footer-logo">ZUZZ THERAPY</div>
+        <p class="footer-copy" style="margin-top:0.5rem">&copy; 2026 Zuzz Therapy. Hak Cipta Terpelihara.</p>
+      </div>
+      <div class="footer-areas">
+        <strong>Zon Operasi</strong>
+        Bangi &nbsp;&bull;&nbsp; Kajang &nbsp;&bull;&nbsp; Kuala Lumpur &nbsp;&bull;&nbsp; Shah Alam &nbsp;&bull;&nbsp; Damansara
+      </div>
+    </div>
+  </div>
+</footer>
+
+<script>
+  // Fade-up on scroll
+  const obs = new IntersectionObserver((entries) => {
+    entries.forEach((e, i) => {
+      if (e.isIntersecting) {
+        setTimeout(() => e.target.classList.add('visible'), i * 90);
+        obs.unobserve(e.target);
+      }
+    });
+  }, { threshold: 0.1 });
+  document.querySelectorAll('.fade-up').forEach(el => obs.observe(el));
+
+  // Nav shadow on scroll
+  const nav = document.getElementById('main-nav');
+  window.addEventListener('scroll', () => {
+    nav.style.boxShadow = window.scrollY > 20
+      ? '0 1px 28px rgba(28,28,28,0.07)'
+      : 'none';
+  }, { passive: true });
+</script>
+</body>
+</html>
