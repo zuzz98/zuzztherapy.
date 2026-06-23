@@ -58,11 +58,15 @@ nav{
 /* ── HERO ── */
 .hero{
   min-height:100vh;
-  display:flex;flex-direction:column;justify-content:center;
+  display:grid;
+  grid-template-columns:1fr 1fr;
+  align-items:center;
+  gap:4rem;
   padding:10rem 4rem 6rem;
   max-width:1200px;margin:0 auto;
   position:relative;
 }
+.hero-content{display:flex;flex-direction:column;justify-content:center}
 .hero-eyebrow{
   font-size:0.65rem;letter-spacing:0.32em;
   text-transform:uppercase;color:var(--mud);
@@ -75,7 +79,7 @@ nav{
 }
 .hero h1{
   font-family:'Playfair Display',Georgia,serif;
-  font-size:clamp(3rem,7vw,6rem);
+  font-size:clamp(2.6rem,5vw,5rem);
   font-weight:500;line-height:1.08;
   letter-spacing:-0.02em;
   color:var(--charcoal);
@@ -83,11 +87,38 @@ nav{
 }
 .hero h1 em{font-style:italic;font-weight:400}
 .hero-sub{
-  font-size:clamp(0.85rem,1.4vw,0.98rem);
+  font-size:clamp(0.82rem,1.2vw,0.95rem);
   line-height:1.9;color:var(--mud);
   letter-spacing:0.03em;
-  max-width:580px;margin-bottom:3rem;
+  max-width:520px;margin-bottom:3rem;
 }
+.hero-image-col{
+  position:relative;
+  display:flex;align-items:center;justify-content:center;
+}
+.hero-image-wrap{
+  position:relative;
+  width:100%;max-width:460px;
+}
+.hero-image-wrap::before{
+  content:'';position:absolute;
+  top:-1.5rem;left:-1.5rem;right:1.5rem;bottom:1.5rem;
+  border:1px solid var(--border);
+  z-index:0;
+}
+.hero-image-wrap img{
+  width:100%;display:block;
+  position:relative;z-index:1;
+  filter:grayscale(20%) contrast(1.04);
+}
+.hero-image-caption{
+  margin-top:0.9rem;
+  font-size:0.56rem;letter-spacing:0.22em;
+  text-transform:uppercase;color:var(--mud);
+  opacity:0.6;text-align:center;
+  font-family:'Inter',sans-serif;
+}
+
 .btn-primary{
   display:inline-block;
   padding:1.05rem 2.4rem;
@@ -224,88 +255,143 @@ section{padding:7rem 4rem}
 }
 .method-col:hover .method-body{color:rgba(250,249,245,0.78)}
 
-/* ── SERVICE ── */
+/* ── PACKAGES (SERVICE MENU) ── */
 .service{background:var(--cream)}
-.service-card{
+.packages-grid{
+  display:grid;grid-template-columns:1fr 1fr;
+  gap:2rem;max-width:980px;margin:0 auto;
+}
+.pkg-card{
   border:1px solid var(--border-strong);
-  max-width:700px;margin:0 auto;
-  padding:4rem 4.5rem;
+  padding:3.4rem 3.2rem;
   position:relative;background:white;
   box-shadow:0 2px 40px rgba(28,28,28,0.04);
+  display:flex;flex-direction:column;
 }
-.service-card::before{
-  content:'SESI KLINIKAL';
-  position:absolute;top:-0.55rem;left:50%;
-  transform:translateX(-50%);
-  background:var(--cream);
-  padding:0 1.2rem;
-  font-size:0.56rem;letter-spacing:0.35em;
-  color:var(--mud);font-family:'Inter',sans-serif;
-}
-.spec-badge{
+.pkg-badge{
   position:absolute;top:0;right:0;
   background:var(--charcoal);color:var(--cream);
-  font-size:0.55rem;letter-spacing:0.22em;
-  text-transform:uppercase;padding:0.3rem 0.9rem;
+  font-size:0.52rem;letter-spacing:0.22em;
+  text-transform:uppercase;padding:0.28rem 0.85rem;
   font-family:'Inter',sans-serif;font-weight:500;
 }
-.service-tag{
+.pkg-badge.alt{background:var(--olive)}
+.pkg-label{
   display:inline-block;
-  font-size:0.58rem;letter-spacing:0.22em;
+  font-size:0.56rem;letter-spacing:0.22em;
   text-transform:uppercase;
   color:var(--olive);border:1px solid var(--olive);
-  padding:0.28rem 0.85rem;margin-bottom:1.6rem;
+  padding:0.25rem 0.8rem;margin-bottom:1.5rem;
+  font-family:'Inter',sans-serif;
 }
-.service-title{
+.pkg-title{
   font-family:'Playfair Display',serif;
-  font-size:clamp(1.4rem,2.5vw,1.85rem);
-  font-weight:500;margin-bottom:0.4rem;line-height:1.3;
+  font-size:clamp(1.2rem,2vw,1.55rem);
+  font-weight:500;margin-bottom:0.3rem;line-height:1.3;
 }
-.service-sub{
-  font-size:0.62rem;letter-spacing:0.18em;
+.pkg-location{
+  font-size:0.58rem;letter-spacing:0.18em;
   text-transform:uppercase;color:var(--mud);
-  font-family:'Inter',sans-serif;margin-bottom:1.6rem;
+  font-family:'Inter',sans-serif;margin-bottom:0.35rem;
 }
-.service-divider{
-  width:2.5rem;height:1px;
-  background:var(--border-strong);margin:1.6rem 0;
+.pkg-duration{
+  font-size:0.6rem;letter-spacing:0.14em;
+  text-transform:uppercase;color:var(--mud);
+  font-family:'Inter',sans-serif;opacity:0.65;
+  margin-bottom:1.4rem;
 }
-.price-row{
+.pkg-divider{width:2rem;height:1px;background:var(--border-strong);margin:1.2rem 0}
+.pkg-price-row{
   display:flex;align-items:baseline;
-  justify-content:space-between;margin-bottom:0.4rem;
+  justify-content:space-between;margin-bottom:0.35rem;
 }
-.price-label{
-  font-size:0.62rem;letter-spacing:0.15em;
+.pkg-price-label{
+  font-size:0.58rem;letter-spacing:0.14em;
   text-transform:uppercase;color:var(--mud);
   font-family:'Inter',sans-serif;
 }
-.price-display{display:flex;align-items:baseline;gap:0.3rem}
-.price-currency{font-size:0.85rem;font-weight:500;color:var(--mud)}
-.price-amount{
+.pkg-price-display{display:flex;align-items:baseline;gap:0.25rem}
+.pkg-currency{font-size:0.82rem;font-weight:500;color:var(--mud)}
+.pkg-amount{
   font-family:'Playfair Display',serif;
-  font-size:3rem;font-weight:500;
+  font-size:2.8rem;font-weight:500;
   line-height:1;color:var(--charcoal);
 }
-.price-note{
-  font-size:0.62rem;color:var(--mud);
-  letter-spacing:0.1em;margin-bottom:2.4rem;
+.pkg-price-note{
+  font-size:0.58rem;color:var(--mud);
+  letter-spacing:0.09em;margin-bottom:2rem;
   font-family:'Inter',sans-serif;
 }
-.service-list{
+.pkg-desc{
+  font-size:0.78rem;line-height:1.9;
+  color:var(--mud);margin-bottom:2.2rem;
+  flex-grow:1;
+}
+.pkg-list{
   list-style:none;
-  display:flex;flex-direction:column;gap:0.9rem;
-  margin-bottom:2.8rem;
+  display:flex;flex-direction:column;gap:0.8rem;
+  margin-bottom:2.4rem;
 }
-.service-list li{
-  display:flex;align-items:flex-start;gap:0.9rem;
-  font-size:0.8rem;line-height:1.75;color:var(--mud);
+.pkg-list li{
+  display:flex;align-items:flex-start;gap:0.8rem;
+  font-size:0.76rem;line-height:1.75;color:var(--mud);
 }
-.service-list li svg{flex-shrink:0;margin-top:3px}
-.service-note{
-  font-size:0.6rem;letter-spacing:0.12em;
+.pkg-list li svg{flex-shrink:0;margin-top:3px}
+
+/* ── EBOOK SECTION ── */
+.ebook{
+  background:#F0EEE8;
+  border-top:1px solid var(--border);
+  border-bottom:1px solid var(--border);
+}
+.ebook-inner{
+  max-width:700px;margin:0 auto;
+  display:flex;flex-direction:column;align-items:center;
+  text-align:center;
+}
+.ebook-eyebrow{
+  font-size:0.58rem;letter-spacing:0.3em;
   text-transform:uppercase;color:var(--mud);
-  text-align:center;margin-top:0.9rem;
-  font-family:'Inter',sans-serif;opacity:0.7;
+  margin-bottom:1.6rem;
+  font-family:'Inter',sans-serif;font-weight:500;
+  display:flex;align-items:center;gap:0.9rem;
+}
+.ebook-eyebrow::before,.ebook-eyebrow::after{
+  content:'';display:inline-block;
+  width:2rem;height:1px;background:var(--border-strong);
+}
+.ebook-title{
+  font-family:'Playfair Display',serif;
+  font-size:clamp(1.5rem,3vw,2.3rem);
+  font-weight:500;line-height:1.25;
+  letter-spacing:-0.01em;
+  margin-bottom:0.9rem;
+  color:var(--charcoal);
+}
+.ebook-title em{font-style:italic;font-weight:400}
+.ebook-sub{
+  font-size:0.82rem;line-height:1.85;
+  color:var(--mud);max-width:520px;
+  margin-bottom:2.4rem;letter-spacing:0.02em;
+}
+/* ── EBOOK BUTTON — replace '#' with actual link when ready ── */
+.btn-ebook{
+  display:inline-block;
+  padding:1rem 2.4rem;
+  border:1px solid var(--charcoal);
+  color:var(--charcoal);
+  font-family:'Inter',sans-serif;
+  font-size:0.68rem;font-weight:500;
+  letter-spacing:0.22em;text-transform:uppercase;
+  text-decoration:none;
+  transition:all 0.45s ease;
+}
+.btn-ebook:hover{background:var(--charcoal);color:var(--cream)}
+.ebook-note{
+  margin-top:1.2rem;
+  font-size:0.56rem;letter-spacing:0.18em;
+  text-transform:uppercase;color:var(--mud);
+  opacity:0.55;font-family:'Inter',sans-serif;
 }
 
 /* ── AUDIENCE ── */
@@ -331,8 +417,79 @@ section{padding:7rem 4rem}
   font-size:1.1rem;font-weight:500;
   margin-bottom:0.8rem;line-height:1.4;
 }
-.audience-body{
-  font-size:0.78rem;line-height:1.9;color:var(--mud);
+.audience-body{font-size:0.78rem;line-height:1.9;color:var(--mud)}
+
+/* ── TESTIMONIALS ── */
+.testimonials{
+  background:var(--cream);
+  border-top:1px solid var(--border);
+}
+.testi-grid{
+  display:grid;grid-template-columns:repeat(3,1fr);
+  gap:1.8rem;margin-bottom:3.5rem;
+}
+.testi-card{
+  border:1px solid var(--border);
+  padding:2.6rem 2.2rem;
+  background:white;
+  box-shadow:0 1px 22px rgba(28,28,28,0.03);
+  display:flex;flex-direction:column;
+  transition:box-shadow 0.4s ease,transform 0.4s ease;
+}
+.testi-card:hover{
+  box-shadow:0 4px 36px rgba(28,28,28,0.08);
+  transform:translateY(-3px);
+}
+.testi-stars{
+  font-size:0.72rem;letter-spacing:0.12em;
+  color:var(--olive);margin-bottom:1.4rem;
+  display:block;
+}
+.testi-text{
+  font-family:'Playfair Display',serif;
+  font-size:0.95rem;font-weight:400;font-style:italic;
+  line-height:1.8;color:var(--charcoal);
+  flex-grow:1;margin-bottom:1.8rem;
+}
+.testi-divider{
+  width:1.5rem;height:1px;
+  background:var(--border-strong);margin-bottom:1.2rem;
+}
+.testi-author-name{
+  font-size:0.68rem;letter-spacing:0.18em;
+  text-transform:uppercase;
+  color:var(--charcoal);
+  font-family:'Inter',sans-serif;font-weight:500;
+  display:block;margin-bottom:0.25rem;
+}
+.testi-author-role{
+  font-size:0.58rem;letter-spacing:0.14em;
+  text-transform:uppercase;
+  color:var(--mud);opacity:0.6;
+  font-family:'Inter',sans-serif;
+}
+.testi-cta{text-align:center}
+.testi-cta-label{
+  font-size:0.58rem;letter-spacing:0.22em;
+  text-transform:uppercase;color:var(--mud);
+  display:block;margin-bottom:1.2rem;
+  font-family:'Inter',sans-serif;
+}
+/* ── REVIEW BUTTON — replace '#' with Google Review or WhatsApp link ── */
+.btn-review{
+  display:inline-block;
+  padding:0.95rem 2.2rem;
+  border:1px solid var(--border-strong);
+  color:var(--charcoal);
+  font-family:'Inter',sans-serif;
+  font-size:0.66rem;font-weight:500;
+  letter-spacing:0.2em;text-transform:uppercase;
+  text-decoration:none;
+  transition:all 0.45s ease;
+}
+.btn-review:hover{
+  background:var(--charcoal);color:var(--cream);
+  border-color:var(--charcoal);
 }
 
 /* ── FOOTER ── */
@@ -356,6 +513,7 @@ footer{
   color:rgba(250,249,245,0.88);
   max-width:660px;margin-bottom:3.2rem;
 }
+/* ── WHATSAPP CTA BUTTON — replace href with your WhatsApp URL ── */
 .btn-whatsapp{
   display:inline-flex;align-items:center;gap:0.75rem;
   padding:1.05rem 2.2rem;
@@ -390,10 +548,11 @@ footer{
   color:rgba(250,249,245,0.3);
   font-family:'Inter',sans-serif;
 }
+/* ── OPERATION ZONES ── */
 .footer-areas{
   font-size:0.62rem;letter-spacing:0.1em;
   color:rgba(250,249,245,0.4);
-  font-family:'Inter',sans-serif;text-align:right;
+  font-family:'Inter',sans-serif;text-align:center;
 }
 .footer-areas strong{
   display:block;font-size:0.55rem;
@@ -401,8 +560,51 @@ footer{
   color:rgba(250,249,245,0.22);
   margin-bottom:0.4rem;font-weight:400;
 }
+/* ── SOCIAL LINKS — replace hrefs below with actual URLs ── */
+.footer-social{
+  display:flex;flex-direction:column;align-items:flex-end;gap:0.55rem;
+  text-align:right;
+}
+.footer-social-label{
+  font-size:0.52rem;letter-spacing:0.28em;
+  text-transform:uppercase;
+  color:rgba(250,249,245,0.22);
+  font-family:'Inter',sans-serif;
+  margin-bottom:0.2rem;
+}
+.social-links{display:flex;gap:1.8rem;align-items:center}
+.social-link{
+  display:flex;align-items:center;gap:0.5rem;
+  font-size:0.6rem;letter-spacing:0.18em;
+  text-transform:uppercase;
+  color:rgba(250,249,245,0.38);
+  text-decoration:none;
+  font-family:'Inter',sans-serif;font-weight:500;
+  transition:color 0.35s ease;
+}
+.social-link:hover{color:rgba(250,249,245,0.85)}
+.social-link svg{
+  width:13px;height:13px;
+  stroke:currentColor;fill:none;
+  stroke-width:1.4;flex-shrink:0;
+}
 
-/* ── FADE-UP ANIMATION ── */
+/* ── BACK TO TOP ── */
+.back-to-top{
+  position:fixed;bottom:2.2rem;right:2.2rem;z-index:90;
+  width:42px;height:42px;
+  background:var(--charcoal);color:var(--cream);
+  border:none;cursor:pointer;
+  display:flex;align-items:center;justify-content:center;
+  opacity:0;transform:translateY(12px);
+  transition:opacity 0.4s ease,transform 0.4s ease,background 0.35s ease;
+  pointer-events:none;
+}
+.back-to-top.visible{opacity:1;transform:translateY(0);pointer-events:auto}
+.back-to-top:hover{background:var(--olive)}
+.back-to-top svg{width:15px;height:15px;stroke:currentColor;fill:none;stroke-width:1.7}
+
+/* ── FADE-UP ── */
 .fade-up{
   opacity:0;transform:translateY(30px);
   transition:opacity 0.72s ease,transform 0.72s ease;
@@ -410,6 +612,12 @@ footer{
 .fade-up.visible{opacity:1;transform:translateY(0)}
 
 /* ── RESPONSIVE ── */
+@media(max-width:1000px){
+  .hero{grid-template-columns:1fr;gap:3rem;min-height:auto;padding:9rem 4rem 5rem}
+  .hero-image-col{display:none}
+  .packages-grid{grid-template-columns:1fr;max-width:520px}
+  .testi-grid{grid-template-columns:1fr}
+}
 @media(max-width:900px){
   nav{padding:1.3rem 1.5rem}
   .nav-tag{display:none}
@@ -419,11 +627,12 @@ footer{
   .method-col{border-right:none;border-bottom:1px solid rgba(250,249,245,0.1)}
   .method-col:last-child{border-bottom:none}
   .audience-grid{grid-template-columns:1fr}
-  .service-card{padding:2.8rem 1.8rem}
+  .pkg-card{padding:2.4rem 1.8rem}
   .phil-inner{padding:1rem 0.5rem}
   footer{padding:4rem 1.5rem 3rem}
   .footer-bottom{flex-direction:column;align-items:flex-start}
   .footer-areas{text-align:left}
+  .footer-social{align-items:flex-start}
   .hero-scroll{display:none}
 }
 </style>
@@ -433,35 +642,49 @@ footer{
 <!-- NAV -->
 <nav id="main-nav">
   <a href="#" class="nav-logo">ZUZZ THERAPY</a>
-  <span class="nav-tag">MSR Klinikal &bull; Pakar Terapi Mobil</span>
+  <span class="nav-tag">Clinical Soft Tissue &amp; MSR &bull; Specialist Mobile Therapy</span>
 </nav>
 
 <!-- HERO -->
 <div class="hero">
-  <p class="hero-eyebrow fade-up">Kalibrasi Semula Paksi Fizikal · Lembah Klang</p>
-  <h1 class="fade-up">Restorasi Biomekanik <em>Manusia.</em></h1>
-  <p class="hero-sub fade-up">Terapi klinikal mobil premium dan sistem Motion Specific Release (MSR) yang direkayasa khusus demi mengembalikan resonans semula jadi tubuh. Melampaui metodologi urutan konvensional — menyampaikan ketepatan struktural mutlak, terus ke ruang privasi eksklusif anda di seluruh Lembah Klang.</p>
-  <div class="fade-up">
-    <a href="https://wa.me/60174916815" target="_blank" rel="noopener" class="btn-primary">Tempah Sesi Pakar</a>
+  <div class="hero-content">
+    <p class="hero-eyebrow fade-up">Biomechanical Restoration · Semenyih · Kuala Lumpur · Penang</p>
+    <h1 class="fade-up">Restorasi Biomekanik <em>Manusia.</em></h1>
+    <p class="hero-sub fade-up">Premium clinical mobile therapy and Motion Specific Release (MSR) system — precisely engineered to restore the body's natural resonance. Transcending conventional methodology to deliver absolute structural precision, directly to your exclusive private space.</p>
+    <div class="fade-up">
+      <!-- WHATSAPP CTA — replace with your WhatsApp URL e.g. https://wa.me/601XXXXXXXX -->
+      <a href="https://wa.me/60174916815" target="_blank" rel="noopener" class="btn-primary">Book a Specialist Session</a>
+    </div>
+  </div>
+  <div class="hero-image-col fade-up">
+    <div class="hero-image-wrap">
+      <!-- Anatomy / musculoskeletal reference image from open-source Wikimedia Commons -->
+      <img
+        src="https://upload.wikimedia.org/wikipedia/commons/thumb/1/19/Gray392.png/480px-Gray392.png"
+        alt="Human musculoskeletal anatomy — Zuzz Therapy"
+        loading="lazy"
+      />
+    </div>
+    <p class="hero-image-caption">Human Musculoskeletal Architecture</p>
   </div>
   <div class="hero-scroll">
     <div class="hero-scroll-line"></div>
-    Tatal
+    Scroll
   </div>
 </div>
 
 <!-- PHILOSOPHY -->
 <section class="philosophy">
   <div class="container">
-    <div class="section-label fade-up" style="color:rgba(250,249,245,0.3)">Falsafah</div>
+    <div class="section-label fade-up" style="color:rgba(250,249,245,0.3)">Philosophy</div>
     <div class="phil-inner fade-up">
       <span class="quote-mark">"</span>
       <blockquote>
-        Tubuh manusia bukanlah sekadar medan ketegangan untuk diuli. Ia adalah sebuah sistem kinetik yang jitu — rantaian fasia, jalur saraf, dan seni bina struktur yang menuntut kebijaksanaan klinikal, bukan sekadar sentuhan biasa.
+        The human body is not merely a field of tension to be kneaded. It is a precise kinetic system — a chain of fascia, neural pathways, and structural architecture that demands clinical wisdom, not common touch.
       </blockquote>
       <span class="quote-mark right">"</span>
       <div class="phil-divider"></div>
-      <p class="phil-cite">— Teori Resonans Semula Jadi Zuzz</p>
+      <p class="phil-cite">— Zuzz Natural Resonance Theory</p>
     </div>
   </div>
 </section>
@@ -469,102 +692,135 @@ footer{
 <!-- METHODOLOGY -->
 <section class="methodology">
   <div class="container">
-    <div class="section-label fade-up" style="color:rgba(250,249,245,0.32);margin-bottom:2.5rem">Kerangka Kerja</div>
+    <div class="section-label fade-up" style="color:rgba(250,249,245,0.32);margin-bottom:2.5rem">Framework</div>
     <div class="method-grid fade-up">
-
-      <!-- RELEASE -->
       <div class="method-col">
         <svg class="method-icon" viewBox="0 0 30 30" fill="none" stroke="rgba(250,249,245,0.55)" stroke-width="1.2">
-          <circle cx="15" cy="15" r="11"/>
-          <circle cx="15" cy="15" r="4"/>
+          <circle cx="15" cy="15" r="11"/><circle cx="15" cy="15" r="4"/>
           <path d="M15 4v4M15 22v4M4 15h4M22 15h4"/>
           <path d="M7.5 7.5l2.8 2.8M19.7 19.7l2.8 2.8M22.5 7.5l-2.8 2.8M10.3 19.7l-2.8 2.8"/>
         </svg>
         <span class="method-num">01</span>
-        <span class="method-sub">Reprogram / Pelepasan</span>
+        <span class="method-sub">Reprogram / Release</span>
         <h3 class="method-title">Release</h3>
-        <p class="method-body">Memburu titik cetusan aktif, meruraikan fibrosis fasia dan tisu parut, serta memulihkan perfusi iskemik pada jaringan otot dalaman yang kronik — membebaskan struktur dari genggaman ketegangan tertunggak.</p>
+        <p class="method-body">Targeting active trigger points, dissolving fascial fibrosis and scar tissue, and restoring ischaemic perfusion in chronically contracted deep musculature — liberating structure from the grip of accumulated tension.</p>
       </div>
-
-      <!-- STRETCH -->
       <div class="method-col">
         <svg class="method-icon" viewBox="0 0 30 30" fill="none" stroke="rgba(250,249,245,0.55)" stroke-width="1.2">
-          <path d="M5 25L25 5"/>
-          <path d="M5 5h8M25 25h-8"/>
-          <path d="M5 25l6-6M25 5l-6 6"/>
-          <circle cx="15" cy="15" r="4"/>
+          <path d="M5 25L25 5"/><path d="M5 5h8M25 25h-8"/>
+          <path d="M5 25l6-6M25 5l-6 6"/><circle cx="15" cy="15" r="4"/>
         </svg>
         <span class="method-num">02</span>
-        <span class="method-sub">Decompress / Regangan</span>
+        <span class="method-sub">Decompress / Elongate</span>
         <h3 class="method-title">Stretch</h3>
-        <p class="method-body">Dekompresi sekatan struktural dan pembukaan gerbang kinetik melalui pemanjangan metodikal. Jalur otot yang tersekat dibebaskan secara beransur, memulihkan litar pergerakan penuh dan laluan beban semula jadi.</p>
+        <p class="method-body">Structural decompression and kinetic gate opening through methodical elongation. Restricted muscular pathways are progressively liberated, restoring full range of motion and natural load distribution.</p>
       </div>
-
-      <!-- POWER -->
       <div class="method-col">
         <svg class="method-icon" viewBox="0 0 30 30" fill="none" stroke="rgba(250,249,245,0.55)" stroke-width="1.2">
-          <path d="M15 4v22"/>
-          <path d="M8 10l7-6 7 6"/>
-          <path d="M8 20l7 6 7-6"/>
-          <path d="M4 15h5M21 15h5"/>
+          <path d="M15 4v22"/><path d="M8 10l7-6 7 6"/>
+          <path d="M8 20l7 6 7-6"/><path d="M4 15h5M21 15h5"/>
           <circle cx="15" cy="15" r="2.5"/>
         </svg>
         <span class="method-num">03</span>
-        <span class="method-sub">Stabilize / Pengukuhan</span>
+        <span class="method-sub">Stabilize / Fortify</span>
         <h3 class="method-title">Power</h3>
-        <p class="method-body">Latihan semula sistem saraf tunjang melalui protokol bebanan isometrik dan Heavy Slow Resistance — membina kawalan neuro yang mapan, mengekod kekuatan di mana kelemahan pernah diterima sebagai norma.</p>
+        <p class="method-body">Neural re-education via isometric loading and Heavy Slow Resistance protocols — building resilient neuro-muscular control, encoding strength precisely where chronic weakness had become accepted as norm.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- PACKAGES / SERVICE MENU -->
+<section class="service">
+  <div class="container">
+    <div class="section-label fade-up">Service Menu</div>
+    <div class="packages-grid">
+
+      <!-- PACKAGE 1: STUDIO SESSION -->
+      <div class="pkg-card fade-up">
+        <div class="pkg-badge">SPEC-2026</div>
+        <span class="pkg-label">In-Studio &nbsp;·&nbsp; Semenyih</span>
+        <h2 class="pkg-title">In-Studio Clinical Session</h2>
+        <p class="pkg-location">Treatment Studio · Semenyih</p>
+        <p class="pkg-duration">90 Minutes – 2 Hours</p>
+        <div class="pkg-divider"></div>
+        <div class="pkg-price-row">
+          <span class="pkg-price-label">Session Investment</span>
+          <div class="pkg-price-display">
+            <span class="pkg-currency">RM</span>
+            <span class="pkg-amount">249</span>
+          </div>
+        </div>
+        <p class="pkg-price-note">Per session &nbsp;·&nbsp; At the Semenyih studio &nbsp;·&nbsp; Post-treatment payment</p>
+        <ul class="pkg-list">
+          <li>
+            <svg width="14" height="14" viewBox="0 0 14 14" fill="none" stroke="#344235" stroke-width="1.6"><path d="M2 7.5l3.5 3.5 6.5-7" stroke-linecap="round" stroke-linejoin="round"/></svg>
+            Comprehensive Biomechanical &amp; Functional Assessment
+          </li>
+          <li>
+            <svg width="14" height="14" viewBox="0 0 14 14" fill="none" stroke="#344235" stroke-width="1.6"><path d="M2 7.5l3.5 3.5 6.5-7" stroke-linecap="round" stroke-linejoin="round"/></svg>
+            Targeted Clinical Soft Tissue &amp; MSR Manipulation
+          </li>
+          <li>
+            <svg width="14" height="14" viewBox="0 0 14 14" fill="none" stroke="#344235" stroke-width="1.6"><path d="M2 7.5l3.5 3.5 6.5-7" stroke-linecap="round" stroke-linejoin="round"/></svg>
+            Personalised Post-Treatment Guide: Stretching &amp; Strength Training Protocols
+          </li>
+        </ul>
+        <!-- WHATSAPP BUTTON — replace href with your WhatsApp URL e.g. https://wa.me/601XXXXXXXX -->
+        <a href="https://wa.me/60174916815" target="_blank" rel="noopener" class="btn-primary" style="display:block;text-align:center;width:100%">Check Slot Availability</a>
+        <p style="font-size:0.58rem;letter-spacing:0.12em;text-transform:uppercase;color:var(--mud);text-align:center;margin-top:0.8rem;font-family:'Inter',sans-serif;opacity:0.65;">No digital deposit. Payment upon session completion.</p>
+      </div>
+
+      <!-- PACKAGE 2: PREMIUM MOBILE -->
+      <div class="pkg-card fade-up">
+        <div class="pkg-badge alt">MOBILE ELITE</div>
+        <span class="pkg-label">On-Site &nbsp;·&nbsp; Kuala Lumpur</span>
+        <h2 class="pkg-title">Premium Mobile Clinical Service</h2>
+        <p class="pkg-location">Private Space · Kuala Lumpur</p>
+        <p class="pkg-duration">Full Clinical Setup Inclusive</p>
+        <div class="pkg-divider"></div>
+        <div class="pkg-price-row">
+          <span class="pkg-price-label">Session Investment</span>
+          <div class="pkg-price-display">
+            <span class="pkg-currency">RM</span>
+            <span class="pkg-amount">295</span>
+          </div>
+        </div>
+        <p class="pkg-price-note">Per session &nbsp;·&nbsp; Mobile to your location &nbsp;·&nbsp; All-inclusive</p>
+        <p class="pkg-desc">Elite on-site clinical therapy delivered directly to your private space within Kuala Lumpur. Fully inclusive of professional clinical equipment setup and transportation. The exact high-calibre, rigorous Clinical Soft Tissue &amp; MSR Session — with zero logistical burden on the client.</p>
+        <ul class="pkg-list">
+          <li>
+            <svg width="14" height="14" viewBox="0 0 14 14" fill="none" stroke="#344235" stroke-width="1.6"><path d="M2 7.5l3.5 3.5 6.5-7" stroke-linecap="round" stroke-linejoin="round"/></svg>
+            Full Clinical Equipment Transported &amp; Set Up On-Site
+          </li>
+          <li>
+            <svg width="14" height="14" viewBox="0 0 14 14" fill="none" stroke="#344235" stroke-width="1.6"><path d="M2 7.5l3.5 3.5 6.5-7" stroke-linecap="round" stroke-linejoin="round"/></svg>
+            Transportation Fees Fully Inclusive — Zero Hidden Charges
+          </li>
+          <li>
+            <svg width="14" height="14" viewBox="0 0 14 14" fill="none" stroke="#344235" stroke-width="1.6"><path d="M2 7.5l3.5 3.5 6.5-7" stroke-linecap="round" stroke-linejoin="round"/></svg>
+            Identical Rigorous Clinical Soft Tissue &amp; MSR Protocol
+          </li>
+        </ul>
+        <!-- WHATSAPP BUTTON — replace href with your WhatsApp URL e.g. https://wa.me/601XXXXXXXX -->
+        <a href="https://wa.me/60174916815" target="_blank" rel="noopener" class="btn-primary" style="display:block;text-align:center;width:100%;background:var(--olive);border-color:var(--olive);">Book Mobile Service</a>
+        <p style="font-size:0.58rem;letter-spacing:0.12em;text-transform:uppercase;color:var(--mud);text-align:center;margin-top:0.8rem;font-family:'Inter',sans-serif;opacity:0.65;">No digital deposit. Payment upon session completion.</p>
       </div>
 
     </div>
   </div>
 </section>
 
-<!-- SERVICE -->
-<section class="service">
+<!-- EBOOK -->
+<section class="ebook">
   <div class="container">
-    <div class="section-label fade-up">Tawaran Spesialis</div>
-    <div class="service-card fade-up">
-      <div class="spec-badge">SPEC-2026</div>
-      <span class="service-tag">Kadar Tetap Spesialis</span>
-      <h2 class="service-title">Clinical Soft Tissue &amp; MSR Session</h2>
-      <p class="service-sub">Persekitaran Klinikal Bergerak &bull; Ruang Privasi Anda</p>
-      <div class="service-divider"></div>
-      <div class="price-row">
-        <span class="price-label">Nilai Pelaburan Sesi</span>
-        <div class="price-display">
-          <span class="price-currency">RM</span>
-          <span class="price-amount">249</span>
-        </div>
-      </div>
-      <p class="price-note">Per sesi &nbsp;·&nbsp; Mobil ke lokasi anda &nbsp;·&nbsp; Bayaran pasca-rawatan</p>
-      <ul class="service-list">
-        <li>
-          <svg width="14" height="14" viewBox="0 0 14 14" fill="none" stroke="#344235" stroke-width="1.6">
-            <path d="M2 7.5l3.5 3.5 6.5-7" stroke-linecap="round" stroke-linejoin="round"/>
-          </svg>
-          Penilaian Biomekanik &amp; Fungsional Komprehensif
-        </li>
-        <li>
-          <svg width="14" height="14" viewBox="0 0 14 14" fill="none" stroke="#344235" stroke-width="1.6">
-            <path d="M2 7.5l3.5 3.5 6.5-7" stroke-linecap="round" stroke-linejoin="round"/>
-          </svg>
-          Pelaksanaan Protokol Jitu Motion Specific Release (MSR)
-        </li>
-        <li>
-          <svg width="14" height="14" viewBox="0 0 14 14" fill="none" stroke="#344235" stroke-width="1.6">
-            <path d="M2 7.5l3.5 3.5 6.5-7" stroke-linecap="round" stroke-linejoin="round"/>
-          </svg>
-          Palpasi Mendalam &amp; Pelepasan Lekatan Antara Otot (Adhesion)
-        </li>
-        <li>
-          <svg width="14" height="14" viewBox="0 0 14 14" fill="none" stroke="#344235" stroke-width="1.6">
-            <path d="M2 7.5l3.5 3.5 6.5-7" stroke-linecap="round" stroke-linejoin="round"/>
-          </svg>
-          Logistik Mobil Premium — Ekosistem rawatan dibawa terus ke ruang privasi anda
-        </li>
-      </ul>
-      <a href="https://wa.me/60174916815" target="_blank" rel="noopener" class="btn-primary" style="display:block;text-align:center;width:100%">Semak Kekosongan Slot Via WhatsApp</a>
-      <p class="service-note">Tiada transaksi deposit digital. Pembayaran dilakukan pasca-rawatan.</p>
+    <div class="ebook-inner fade-up">
+      <p class="ebook-eyebrow">Forthcoming Publication</p>
+      <h2 class="ebook-title">The Great Reset:<br/><em>Aggressive Natural Resonance</em></h2>
+      <p class="ebook-sub">A clinical framework for those who refuse to accept structural dysfunction as permanent — a rigorous, uncompromising guide to resetting the body's biomechanical foundations from first principles.</p>
+      <!-- EBOOK BUTTON — replace '#' with actual download or landing page URL when ready -->
+      <a href="#" class="btn-ebook">Download Ebook</a>
+      <p class="ebook-note">Available Soon &nbsp;·&nbsp; Zuzz Therapy Publication</p>
     </div>
   </div>
 </section>
@@ -572,45 +828,80 @@ footer{
 <!-- AUDIENCE -->
 <section class="audience">
   <div class="container">
-    <div class="section-label fade-up">Direka Khas Untuk</div>
+    <div class="section-label fade-up">Designed For</div>
     <div class="audience-grid fade-up">
-
       <div class="audience-card">
-        <span class="audience-num">Profil 01</span>
+        <span class="audience-num">Profile 01</span>
         <svg class="audience-icon" viewBox="0 0 34 34" fill="none" stroke="#344235" stroke-width="1.2">
           <circle cx="17" cy="9" r="5"/>
           <path d="M9 28c0-4.4 3.6-8 8-8s8 3.6 8 8"/>
           <path d="M4 18l5 2.5M30 18l-5 2.5"/>
           <path d="M7 13l3 2M24 13l-3 2"/>
         </svg>
-        <h3 class="audience-title">Individu Berprestasi Tinggi</h3>
-        <p class="audience-body">Atlit dan pengamal seni tempur yang menuntut kecekapan kinetik maksimum, pemulihan struktural pantas, serta mobiliti sendi tanpa sekatan untuk output prestasi tertinggi.</p>
+        <h3 class="audience-title">High-Performance Individuals</h3>
+        <p class="audience-body">Athletes and martial arts practitioners demanding maximum kinetic efficiency, rapid structural recovery, and unrestricted joint mobility for peak performance output.</p>
       </div>
-
       <div class="audience-card">
-        <span class="audience-num">Profil 02</span>
+        <span class="audience-num">Profile 02</span>
         <svg class="audience-icon" viewBox="0 0 34 34" fill="none" stroke="#344235" stroke-width="1.2">
           <rect x="6" y="7" width="22" height="15" rx="1.5"/>
           <path d="M12 22v5M22 22v5M8 27h18"/>
           <path d="M10 13h14M10 17h9"/>
           <circle cx="26" cy="10" r="2.5" fill="#344235" fill-opacity="0.15" stroke="#344235"/>
         </svg>
-        <h3 class="audience-title">Profesional Korporat</h3>
-        <p class="audience-body">Mereka yang mengalami kemerosotan postur, kelesuan kronik pada kawasan torasik, serta himpitan saraf akibat posisi duduk statik yang berpanjangan dalam persekitaran kerja moden.</p>
+        <h3 class="audience-title">Corporate Professionals</h3>
+        <p class="audience-body">Those experiencing postural degradation, chronic thoracic fatigue, and neural compression from prolonged static positioning in modern work environments.</p>
       </div>
-
       <div class="audience-card">
-        <span class="audience-num">Profil 03</span>
+        <span class="audience-num">Profile 03</span>
         <svg class="audience-icon" viewBox="0 0 34 34" fill="none" stroke="#344235" stroke-width="1.2">
           <circle cx="17" cy="17" r="12"/>
           <circle cx="17" cy="17" r="3" fill="#344235" fill-opacity="0.2"/>
           <path d="M17 5v5M17 24v5M5 17h5M24 17h5"/>
           <path d="M9.1 9.1l3.5 3.5M21.4 21.4l3.5 3.5M24.9 9.1l-3.5 3.5M12.6 21.4l-3.5 3.5"/>
         </svg>
-        <h3 class="audience-title">Restorasi Paksi Utama</h3>
-        <p class="audience-body">Individu yang berhadapan dengan gangguan vestibular kompleks (vertigo), trauma impak, ketegangan minda-otot kronik, atau herotan jajaran tubuh yang gagal ditangani oleh pendekatan konvensional.</p>
+        <h3 class="audience-title">Primary Axis Restoration</h3>
+        <p class="audience-body">Individuals navigating complex vestibular disturbances, impact trauma, chronic neuro-muscular tension, or structural misalignment unresolved by conventional approaches.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- TESTIMONIALS -->
+<section class="testimonials">
+  <div class="container">
+    <div class="section-label fade-up">Client Experiences</div>
+    <div class="testi-grid fade-up">
+
+      <div class="testi-card">
+        <span class="testi-stars">★★★★★</span>
+        <p class="testi-text">"Three sessions in, and the chronic thoracic restriction I had carried for two years had systematically unravelled. This is not conventional therapy — it is precise, clinical, and entirely results-oriented."</p>
+        <div class="testi-divider"></div>
+        <span class="testi-author-name">A.R.</span>
+        <span class="testi-author-role">Senior Executive &nbsp;·&nbsp; Kuala Lumpur</span>
       </div>
 
+      <div class="testi-card">
+        <span class="testi-stars">★★★★★</span>
+        <p class="testi-text">"As a competitive athlete, I required a practitioner who understood structural mechanics, not surface-level relief. The MSR protocol addressed the root cause of my hip impingement with a precision I had not encountered before."</p>
+        <div class="testi-divider"></div>
+        <span class="testi-author-name">D.H.</span>
+        <span class="testi-author-role">High-Performance Athlete &nbsp;·&nbsp; Selangor</span>
+      </div>
+
+      <div class="testi-card">
+        <span class="testi-stars">★★★★★</span>
+        <p class="testi-text">"The mobile service is impeccably professional. The clinical environment was fully reconstructed within my home — indistinguishable from a specialist studio. An investment in structural health I do not hesitate to recommend."</p>
+        <div class="testi-divider"></div>
+        <span class="testi-author-name">S.M.</span>
+        <span class="testi-author-role">Business Owner &nbsp;·&nbsp; Kuala Lumpur</span>
+      </div>
+
+    </div>
+    <div class="testi-cta fade-up">
+      <span class="testi-cta-label">Share Your Clinical Experience</span>
+      <!-- REVIEW BUTTON — replace '#' with Google Review URL or WhatsApp review template link -->
+      <a href="#" class="btn-review">Leave a Review</a>
     </div>
   </div>
 </section>
@@ -618,32 +909,77 @@ footer{
 <!-- FOOTER -->
 <footer>
   <div class="footer-inner">
-    <span class="footer-avail fade-up">Ketersediaan Terhad</span>
+    <span class="footer-avail fade-up">Limited Weekly Availability</span>
     <p class="footer-statement fade-up">
-      "Kemasukan slot dihadkan secara ketat setiap minggu bagi memelihara ketepatan klinikal bagi setiap tubuh."
+      "Slot intake is strictly limited each week to preserve clinical precision for every individual."
     </p>
+    <!-- WHATSAPP FOOTER CTA — replace href with your WhatsApp URL e.g. https://wa.me/601XXXXXXXX -->
     <a href="https://wa.me/60174916815" target="_blank" rel="noopener" class="btn-whatsapp fade-up">
       <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
         <path d="M21 11.5a8.38 8.38 0 01-.9 3.8 8.5 8.5 0 01-7.6 4.7 8.38 8.38 0 01-3.8-.9L3 21l1.9-5.7a8.38 8.38 0 01-.9-3.8 8.5 8.5 0 014.7-7.6 8.38 8.38 0 013.8-.9h.5a8.48 8.48 0 018 8v.5z" stroke-linecap="round" stroke-linejoin="round"/>
       </svg>
-      Sahkan Slot Anda Sekarang
+      Confirm Your Slot Now
     </a>
     <div class="footer-divider"></div>
     <div class="footer-bottom">
+
+      <!-- BRAND + COPYRIGHT -->
       <div>
         <div class="footer-logo">ZUZZ THERAPY</div>
-        <p class="footer-copy" style="margin-top:0.5rem">&copy; 2026 Zuzz Therapy. Hak Cipta Terpelihara.</p>
+        <p class="footer-copy" style="margin-top:0.5rem">&copy; 2026 Zuzz Therapy. All Rights Reserved.</p>
       </div>
+
+      <!-- OPERATION ZONES — Semenyih · Kuala Lumpur · Penang -->
       <div class="footer-areas">
-        <strong>Zon Operasi</strong>
-        Bangi &nbsp;&bull;&nbsp; Kajang &nbsp;&bull;&nbsp; Kuala Lumpur &nbsp;&bull;&nbsp; Shah Alam &nbsp;&bull;&nbsp; Damansara
+        <strong>Operation Zones</strong>
+        Semenyih &nbsp;&bull;&nbsp; Kuala Lumpur &nbsp;&bull;&nbsp; Penang
       </div>
+
+      <!-- SOCIAL LINKS — replace hrefs with actual URLs -->
+      <div class="footer-social">
+        <span class="footer-social-label">Connect</span>
+        <div class="social-links">
+
+          <!-- WHATSAPP LINK — replace '#' with https://wa.me/601XXXXXXXX -->
+          <a href="https://wa.me/60174916815" target="_blank" rel="noopener" class="social-link" aria-label="WhatsApp">
+            <svg viewBox="0 0 24 24">
+              <path d="M21 11.5a8.38 8.38 0 01-.9 3.8 8.5 8.5 0 01-7.6 4.7 8.38 8.38 0 01-3.8-.9L3 21l1.9-5.7a8.38 8.38 0 01-.9-3.8 8.5 8.5 0 014.7-7.6 8.38 8.38 0 013.8-.9h.5a8.48 8.48 0 018 8v.5z" stroke-linecap="round" stroke-linejoin="round"/>
+            </svg>
+            WhatsApp
+          </a>
+
+          <!-- TIKTOK LINK — replace '#' with your TikTok profile URL -->
+          <a href="#" target="_blank" rel="noopener" class="social-link" aria-label="TikTok">
+            <svg viewBox="0 0 24 24">
+              <path d="M9 12a4 4 0 104 4V4a5 5 0 005 5" stroke-linecap="round" stroke-linejoin="round"/>
+            </svg>
+            TikTok
+          </a>
+
+          <!-- FACEBOOK LINK — replace '#' with your Facebook page URL -->
+          <a href="#" target="_blank" rel="noopener" class="social-link" aria-label="Facebook">
+            <svg viewBox="0 0 24 24">
+              <path d="M18 2h-3a5 5 0 00-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 011-1h3z" stroke-linecap="round" stroke-linejoin="round"/>
+            </svg>
+            Facebook
+          </a>
+
+        </div>
+      </div>
+
     </div>
   </div>
 </footer>
 
+<!-- BACK TO TOP BUTTON -->
+<button class="back-to-top" id="backToTop" aria-label="Back to top" onclick="window.scrollTo({top:0,behavior:'smooth'})">
+  <svg viewBox="0 0 24 24" stroke-linecap="round" stroke-linejoin="round">
+    <path d="M18 15l-6-6-6 6"/>
+  </svg>
+</button>
+
 <script>
-  // Fade-up on scroll
+  // ── Fade-up on scroll
   const obs = new IntersectionObserver((entries) => {
     entries.forEach((e, i) => {
       if (e.isIntersecting) {
@@ -651,15 +987,21 @@ footer{
         obs.unobserve(e.target);
       }
     });
-  }, { threshold: 0.1 });
+  }, { threshold: 0.08 });
   document.querySelectorAll('.fade-up').forEach(el => obs.observe(el));
 
-  // Nav shadow on scroll
+  // ── Nav shadow on scroll
   const nav = document.getElementById('main-nav');
+  const btt = document.getElementById('backToTop');
   window.addEventListener('scroll', () => {
     nav.style.boxShadow = window.scrollY > 20
-      ? '0 1px 28px rgba(28,28,28,0.07)'
-      : 'none';
+      ? '0 1px 28px rgba(28,28,28,0.07)' : 'none';
+    // Show/hide Back to Top
+    if (window.scrollY > 400) {
+      btt.classList.add('visible');
+    } else {
+      btt.classList.remove('visible');
+    }
   }, { passive: true });
 </script>
 </body>
