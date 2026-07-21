@@ -1,0 +1,251 @@
+<!DOCTYPE html>
+<html lang="ms">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<title>Guide Pemakanan — Zuzz Therapy</title>
+<meta name="description" content="Perpustakaan panduan kesihatan Zuzz Therapy — herba, minyak masak, dan nota pemulihan untuk dibaca secara percuma."/>
+<link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🌿</text></svg>" type="image/svg+xml"/>
+<link rel="preconnect" href="https://fonts.googleapis.com"/>
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,500;0,600;1,400;1,500&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet"/>
+<style>
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+:root{
+  --cream:#FAF9F5;
+  --charcoal:#1C1C1C;
+  --mud:#5A5A54;
+  --olive:#344235;
+  --gold:#8a6a2c;
+  --border:rgba(28,28,28,0.12);
+  --border-strong:rgba(28,28,28,0.22);
+}
+html{scroll-behavior:smooth}
+body{
+  background:var(--cream);color:var(--charcoal);
+  font-family:'Inter',sans-serif;font-weight:300;
+  -webkit-font-smoothing:antialiased;
+  min-height:100vh;display:flex;flex-direction:column;
+}
+::selection{background:var(--olive);color:var(--cream)}
+body::before{
+  content:'';position:fixed;inset:0;pointer-events:none;z-index:0;
+  background:radial-gradient(circle at 50% 15%,rgba(52,66,53,0.045),transparent 55%);
+}
+
+/* ── NAV ── */
+nav{
+  position:relative;z-index:2;
+  display:flex;align-items:center;justify-content:space-between;
+  padding:1.4rem 4rem;border-bottom:1px solid var(--border);
+}
+.nav-logo{
+  font-family:'Playfair Display',Georgia,serif;
+  font-weight:600;font-size:1rem;letter-spacing:0.22em;
+  color:var(--charcoal);text-decoration:none;
+}
+.nav-back{
+  display:inline-flex;align-items:center;gap:0.5rem;
+  font-size:0.63rem;letter-spacing:0.15em;text-transform:uppercase;
+  color:var(--olive);text-decoration:none;font-weight:500;
+  border:1px solid var(--olive);padding:0.45rem 1rem;transition:all 0.4s ease;
+}
+.nav-back:hover{background:var(--olive);color:var(--cream)}
+.nav-back svg{transition:transform 0.4s ease}
+.nav-back:hover svg{transform:translateX(-3px)}
+
+/* ── HEADER ── */
+.lib-header{
+  position:relative;z-index:1;text-align:center;
+  padding:5rem 2rem 3.5rem;max-width:720px;margin:0 auto;
+}
+.lib-eyebrow{
+  font-size:0.63rem;letter-spacing:0.32em;text-transform:uppercase;
+  color:var(--mud);margin-bottom:1.5rem;
+  display:inline-flex;align-items:center;gap:0.9rem;
+}
+.lib-eyebrow::before,.lib-eyebrow::after{content:'';display:inline-block;width:2rem;height:1px;background:var(--mud);opacity:0.5}
+.lib-title{
+  font-family:'Playfair Display',Georgia,serif;
+  font-size:clamp(2rem,4.5vw,3rem);font-weight:500;
+  line-height:1.18;letter-spacing:-0.01em;color:var(--charcoal);margin-bottom:1.2rem;
+}
+.lib-title em{font-style:italic;font-weight:400;color:var(--olive)}
+.lib-sub{font-size:0.9rem;line-height:1.8;color:var(--mud);max-width:520px;margin:0 auto;font-weight:400}
+
+/* ── GRID ── */
+.lib-grid{
+  position:relative;z-index:1;flex:1;
+  max-width:960px;margin:0 auto;width:100%;
+  padding:1rem 2rem 6rem;
+  display:grid;grid-template-columns:1fr 1fr;gap:1.8rem;
+}
+.guide-card{
+  position:relative;display:flex;flex-direction:column;
+  text-decoration:none;color:inherit;background:#fff;
+  border:1px solid var(--border-strong);padding:2.8rem 2.6rem 2.4rem;
+  overflow:hidden;min-height:280px;
+  transition:box-shadow 0.5s ease,transform 0.5s ease,border-color 0.5s ease;
+}
+.guide-card::before{
+  content:'';position:absolute;bottom:0;left:0;width:100%;height:0;
+  background:var(--olive);transition:height 0.55s cubic-bezier(.22,1,.36,1);z-index:0;
+}
+.guide-card:hover{transform:translateY(-4px);box-shadow:0 18px 60px rgba(28,28,28,0.12);border-color:var(--olive)}
+.guide-card:hover::before{height:100%}
+.guide-card>*{position:relative;z-index:1;transition:color 0.45s ease}
+
+.guide-icon-wrap{
+  width:52px;height:52px;flex-shrink:0;
+  border:1px solid var(--border-strong);border-radius:50%;
+  display:flex;align-items:center;justify-content:center;margin-bottom:1.6rem;
+  transition:all 0.45s ease;
+}
+.guide-card:hover .guide-icon-wrap{border-color:rgba(250,249,245,0.4)}
+.guide-icon-wrap svg{width:24px;height:24px;stroke:var(--olive);transition:stroke 0.45s ease}
+.guide-card:hover .guide-icon-wrap svg{stroke:var(--cream)}
+
+.guide-eyebrow{
+  font-size:0.56rem;letter-spacing:0.25em;text-transform:uppercase;
+  color:var(--mud);margin-bottom:0.7rem;display:block;font-weight:500;
+}
+.guide-card:hover .guide-eyebrow{color:rgba(250,249,245,0.55)}
+.guide-name{
+  font-family:'Playfair Display',serif;font-size:1.4rem;font-weight:500;
+  line-height:1.3;margin-bottom:0.8rem;color:var(--charcoal);
+}
+.guide-card:hover .guide-name{color:var(--cream)}
+.guide-desc{font-size:0.78rem;line-height:1.8;color:var(--mud);margin-bottom:1.8rem;flex:1}
+.guide-card:hover .guide-desc{color:rgba(250,249,245,0.78)}
+.guide-cta{
+  display:inline-flex;align-items:center;gap:0.6rem;
+  font-size:0.64rem;font-weight:500;letter-spacing:0.18em;text-transform:uppercase;
+  color:var(--charcoal);padding-top:1.1rem;border-top:1px solid var(--border);
+  transition:color 0.45s ease,border-color 0.45s ease;
+}
+.guide-card:hover .guide-cta{color:var(--cream);border-color:rgba(250,249,245,0.25)}
+.guide-cta svg{width:14px;height:14px;transition:transform 0.4s ease}
+.guide-card:hover .guide-cta svg{transform:translateX(5px)}
+
+/* Coming soon card */
+.guide-card.soon{background:transparent;border-style:dashed;cursor:default}
+.guide-card.soon:hover{transform:none;box-shadow:none;border-color:var(--border-strong)}
+.guide-card.soon:hover::before{height:0}
+.guide-card.soon .guide-name,.guide-card.soon .guide-desc,.guide-card.soon .guide-eyebrow{opacity:0.5}
+.soon-badge{
+  align-self:flex-start;margin-top:auto;
+  font-size:0.56rem;letter-spacing:0.22em;text-transform:uppercase;
+  color:var(--mud);border:1px solid var(--border-strong);padding:0.4rem 1rem;
+}
+
+/* ── FOOTER ── */
+footer{
+  position:relative;z-index:1;text-align:center;
+  padding:2rem;border-top:1px solid var(--border);
+}
+.footer-logo{font-family:'Playfair Display',serif;font-size:0.72rem;letter-spacing:0.25em;color:var(--mud)}
+.footer-copy{font-size:0.56rem;letter-spacing:0.1em;color:var(--mud);opacity:0.6;margin-top:0.4rem}
+.footer-disc{font-size:0.54rem;letter-spacing:0.06em;color:var(--mud);opacity:0.5;margin-top:0.8rem;font-style:italic;max-width:520px;margin-left:auto;margin-right:auto;line-height:1.7}
+
+/* ── FADE-UP ── */
+.fade-up{opacity:0;transform:translateY(24px);transition:opacity 0.8s ease,transform 0.8s ease}
+.fade-up.visible{opacity:1;transform:translateY(0)}
+
+@media(max-width:760px){
+  nav{padding:1.3rem 1.5rem}
+  .lib-header{padding:3.5rem 1.5rem 2.5rem}
+  .lib-grid{grid-template-columns:1fr;gap:1.4rem;padding:1rem 1.5rem 4.5rem}
+  .guide-card{min-height:auto;padding:2.4rem 2rem 2rem}
+}
+</style>
+</head>
+<body>
+
+<!-- ══ NAV ══ -->
+<nav>
+  <a href="rawatan.html" class="nav-logo">ZUZZ THERAPY</a>
+  <a href="rawatan.html" class="nav-back">
+    <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M19 12H5M11 18l-6-6 6-6" stroke-linecap="round" stroke-linejoin="round"/></svg>
+    Kembali
+  </a>
+</nav>
+
+<!-- ══ HEADER ══ -->
+<header class="lib-header">
+  <span class="lib-eyebrow fade-up">Guide Pemakanan</span>
+  <h1 class="lib-title fade-up">Nota &amp; Panduan <em>Kesihatan</em></h1>
+  <p class="lib-sub fade-up">Koleksi panduan percuma daripada ZuzzTherapy — untuk membantu anda memahami tubuh, makanan, dan penawar semula jadi dengan lebih mendalam. Baca pada bila-bila masa.</p>
+</header>
+
+<!-- ══ GRID PANDUAN ══ -->
+<main class="lib-grid">
+
+  <!-- Panduan 1: Herba -->
+  <a href="panduan-herba.html" class="guide-card fade-up">
+    <div class="guide-icon-wrap">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4">
+        <path d="M12 22c0-6 3-11 9-13-3 8-9 9-9 13zM12 22c0-6-3-11-9-13 3 8 9 9 9 13z" stroke-linejoin="round"/>
+        <path d="M12 22V9" stroke-linecap="round"/>
+      </svg>
+    </div>
+    <span class="guide-eyebrow">Kompendium &bull; 28 Herba Ubatan</span>
+    <h2 class="guide-name">Panduan Herba Alami</h2>
+    <p class="guide-desc">28 herba ubatan alami dari serata dunia — termasuk herba antarabangsa dan Nusantara — dibongkar secara terperinci: apa penyakit yang dilawan, cara ia bertindak, dan untuk siapa ia sesuai. Rujukan lengkap dengan nama vernakular.</p>
+    <span class="guide-cta">
+      Baca Panduan
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M13 6l6 6-6 6" stroke-linecap="round" stroke-linejoin="round"/></svg>
+    </span>
+  </a>
+
+  <!-- Panduan 2: Minyak Masak -->
+  <a href="panduan-minyak.html" class="guide-card fade-up">
+    <div class="guide-icon-wrap">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4">
+        <path d="M9 2h6M10 2v4.5L6 15a4 4 0 003.6 5.8h4.8A4 4 0 0018 15l-4-8.5V2" stroke-linejoin="round"/>
+        <path d="M7.5 12h9" stroke-linecap="round"/>
+      </svg>
+    </div>
+    <span class="guide-eyebrow">Panduan &bull; Lemak &amp; Minyak</span>
+    <h2 class="guide-name">Tier List Minyak Masak</h2>
+    <p class="guide-desc">Panduan lengkap lemak &amp; minyak masak — mana yang menyihatkan, mana yang perlu dielakkan. Disusun ikut tingkatan supaya anda tahu pilihan terbaik untuk dapur harian.</p>
+    <span class="guide-cta">
+      Baca Panduan
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M13 6l6 6-6 6" stroke-linecap="round" stroke-linejoin="round"/></svg>
+    </span>
+  </a>
+
+  <!-- Coming soon placeholder — buang bila tambah panduan baru -->
+  <div class="guide-card soon fade-up">
+    <div class="guide-icon-wrap">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4">
+        <circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2" stroke-linecap="round" stroke-linejoin="round"/>
+      </svg>
+    </div>
+    <span class="guide-eyebrow">Akan Datang</span>
+    <h2 class="guide-name">Lebih Banyak Panduan</h2>
+    <p class="guide-desc">Panduan baru sedang dalam penyediaan — nutrisi usus, pemakanan fitrah, dan banyak lagi nota kesihatan akan ditambah dari semasa ke semasa.</p>
+    <span class="soon-badge">Menyusul</span>
+  </div>
+
+</main>
+
+<!-- ══ FOOTER ══ -->
+<footer>
+  <div class="footer-logo">ZUZZ THERAPY</div>
+  <p class="footer-copy">&copy; 2026 Zuzz Therapy. Hak Cipta Terpelihara.</p>
+  <p class="footer-disc">Panduan ini disediakan untuk tujuan pendidikan sahaja dan bukan pengganti nasihat perubatan profesional. Sila rujuk pengamal kesihatan bertauliah untuk keadaan tertentu.</p>
+</footer>
+
+<script>
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach((e, i) => {
+      if (e.isIntersecting) {
+        setTimeout(() => e.target.classList.add('visible'), i * 100);
+        observer.unobserve(e.target);
+      }
+    });
+  }, { threshold: 0.05 });
+  document.querySelectorAll('.fade-up').forEach(el => observer.observe(el));
+</script>
+</body>
+</html>
