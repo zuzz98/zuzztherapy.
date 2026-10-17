@@ -83,8 +83,8 @@ nav{
 
 /* ── CHOICE GRID ── */
 .choices{
-  display:grid;grid-template-columns:1fr 1fr;gap:1.8rem;
-  width:100%;max-width:840px;
+  display:grid;grid-template-columns:1fr 1fr 1fr;gap:1.6rem;
+  width:100%;max-width:1180px;
 }
 .choice-card{
   position:relative;display:flex;flex-direction:column;
@@ -171,12 +171,14 @@ footer{
 .fade-up.visible{opacity:1;transform:translateY(0)}
 
 /* ── RESPONSIVE ── */
+@media(max-width:980px){
+  .choices{grid-template-columns:1fr;max-width:460px;gap:1.4rem}
+}
 @media(max-width:760px){
   nav{padding:1.3rem 1.5rem}
   .nav-tag{display:none}
   .gateway{padding:3.5rem 1.5rem 4.5rem}
   .gw-sub{margin-bottom:3rem}
-  .choices{grid-template-columns:1fr;gap:1.4rem;max-width:420px}
   .choice-card{min-height:auto;padding:2.6rem 2rem 2.2rem}
 }
 </style>
@@ -185,8 +187,8 @@ footer{
 
 <!-- ══ NAV ══ -->
 <nav>
-  <a href="rawatan.html" class="nav-logo">ZUZZ THERAPY</a>
-  <span class="nav-tag">Soft Tissue Release · MSR · Guide</span>
+  <a href="index.html" class="nav-logo">ZUZZ THERAPY</a>
+  <span class="nav-tag">Soft Tissue Release · Terapi Klinikal · Guide</span>
   <a href="https://wa.me/60174916815" target="_blank" rel="noopener" class="nav-wa">
     <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8">
       <path d="M21 11.5a8.38 8.38 0 01-.9 3.8 8.5 8.5 0 01-7.6 4.7 8.38 8.38 0 01-3.8-.9L3 21l1.9-5.7a8.38 8.38 0 01-.9-3.8 8.5 8.5 0 014.7-7.6 8.38 8.38 0 013.8-.9h.5a8.48 8.48 0 018 8v.5z"/>
@@ -214,14 +216,32 @@ footer{
       </div>
       <span class="choice-eyebrow">In-Studio &bull; Mobil KL</span>
       <h2 class="choice-name">Tempah Rawatan</h2>
-      <p class="choice-desc">Sesi Terapi Tisu Lembut Klinikal &amp; Motion Specific Release (MSR) bersama pengamal kami. Penilaian biomekanik penuh untuk sakit leher, belikat, pinggang, sendi &amp; kebas.</p>
+      <p class="choice-desc">Sesi Terapi Tisu Lembut Klinikal bersama pengamal kami. Penilaian biomekanik penuh untuk sakit leher, belikat, pinggang, sendi &amp; kebas.</p>
       <span class="choice-cta">
         Lihat Pakej &amp; Tempah
         <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M13 6l6 6-6 6" stroke-linecap="round" stroke-linejoin="round"/></svg>
       </span>
     </a>
 
-    <!-- ── PILIHAN 2: E-BOOK ── -->
+    <!-- ── PILIHAN 2: EDUCATION ── -->
+    <a href="education.html" class="choice-card fade-up">
+      <div class="choice-badge" style="background:var(--charcoal)">30 Peserta Terawal</div>
+      <div class="choice-icon-wrap">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4">
+          <path d="M12 3L2 8l10 5 10-5-10-5z" stroke-linejoin="round"/>
+          <path d="M6 10.5V16c0 1.5 3 3 6 3s6-1.5 6-3v-5.5" stroke-linecap="round" stroke-linejoin="round"/>
+        </svg>
+      </div>
+      <span class="choice-eyebrow">ZuzzTherapy Education &bull; Dari RM390</span>
+      <h2 class="choice-name">Belajar Jadi Terapis</h2>
+      <p class="choice-desc">Belajar jadi Terapis Klinikal bersama ZuzzTherapy. Kuasai hands-on technique, muscle anatomy, therapist ergonomics, dan cara bina kerjaya sebagai pengamal bodywork moden.</p>
+      <span class="choice-cta">
+        Lihat Kursus
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M13 6l6 6-6 6" stroke-linecap="round" stroke-linejoin="round"/></svg>
+      </span>
+    </a>
+
+    <!-- ── PILIHAN 3: E-BOOK ── -->
     <a href="onpay_sales_v4.html" class="choice-card fade-up">
       <div class="choice-icon-wrap">
         <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4">
