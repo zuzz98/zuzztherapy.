@@ -50,22 +50,29 @@ nav{
 
 /* ── HERO ── */
 .hero{
-  padding:9.5rem 4rem 5rem;max-width:860px;margin:0 auto;text-align:center;
+  position:relative;overflow:hidden;min-height:88vh;
+  display:flex;align-items:center;justify-content:center;
+  padding:9.5rem 4rem 5rem;text-align:center;background:#1a1f1a;
 }
+.hero-bg{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;z-index:0;transform:scale(1.06)}
+.hero-overlay{
+  position:absolute;inset:0;z-index:1;
+  background:linear-gradient(180deg,rgba(18,22,18,0.78) 0%,rgba(18,22,18,0.62) 45%,rgba(18,22,18,0.86) 100%);
+}
+.hero-inner{position:relative;z-index:2;max-width:860px;margin:0 auto}
 .hero-eyebrow{
-  font-size:0.63rem;letter-spacing:0.32em;text-transform:uppercase;color:var(--mud);
+  font-size:0.63rem;letter-spacing:0.32em;text-transform:uppercase;color:rgba(250,249,245,0.7);
   margin-bottom:1.6rem;display:inline-flex;align-items:center;gap:0.9rem;
 }
-.hero-eyebrow::before,.hero-eyebrow::after{content:'';display:inline-block;width:2rem;height:1px;background:var(--mud);opacity:0.5}
+.hero-eyebrow::before,.hero-eyebrow::after{content:'';display:inline-block;width:2rem;height:1px;background:rgba(250,249,245,0.5)}
 .hero h1{
   font-family:'Playfair Display',Georgia,serif;
   font-size:clamp(2rem,4.5vw,3.3rem);font-weight:500;line-height:1.18;
-  letter-spacing:-0.01em;color:var(--charcoal);margin-bottom:1.4rem;
+  letter-spacing:-0.01em;color:var(--cream);margin-bottom:1.4rem;
 }
-.hero h1 em{font-style:italic;font-weight:400;color:var(--olive)}
-.hero-sub{font-size:0.92rem;line-height:1.85;color:var(--mud);max-width:560px;margin:0 auto 2.2rem}
+.hero h1 em{font-style:italic;font-weight:400;color:#C9D6B8}
+.hero-sub{font-size:0.92rem;line-height:1.85;color:rgba(250,249,245,0.78);max-width:580px;margin:0 auto 2.2rem}
 .hero-btns{display:flex;gap:1rem;flex-wrap:wrap;align-items:center;justify-content:center}
-
 .btn-primary{
   display:inline-flex;align-items:center;gap:0.6rem;padding:1rem 2.2rem;
   background:var(--charcoal);color:var(--cream);font-size:0.7rem;font-weight:500;
@@ -80,6 +87,11 @@ nav{
   border:1px solid var(--border-strong);transition:all 0.45s ease;
 }
 .btn-outline:hover{background:var(--charcoal);color:var(--cream)}
+.hero .btn-primary{background:var(--cream);color:var(--charcoal);border-color:var(--cream)}
+.hero .btn-primary:hover{background:transparent;color:var(--cream)}
+.hero .btn-outline{color:var(--cream);border-color:rgba(250,249,245,0.45)}
+.hero .btn-outline:hover{background:var(--cream);color:var(--charcoal)}
+@media(prefers-reduced-motion:reduce){.hero-bg{display:none}.hero{background:#1a1f1a url(hero-bg-poster.jpg) center/cover}}
 
 /* ── DISCLAIMER STRIP ── */
 .disclaimer-strip{
@@ -183,6 +195,7 @@ section{padding:6rem 4rem}
 .teaser-grid{display:grid;grid-template-columns:1fr 1fr;gap:2rem;max-width:900px;margin:0 auto}
 .teaser-card .video-slot{aspect-ratio:16/9;background:var(--charcoal);position:relative;display:flex;align-items:center;justify-content:center;overflow:hidden}
 .teaser-card .video-slot iframe{position:absolute;inset:0;width:100%;height:100%;border:0}
+.teaser-card .video-slot video{position:absolute;inset:0;width:100%;height:100%;object-fit:contain;background:#0C1830}
 .video-ph{color:rgba(250,249,245,0.55);text-align:center;font-size:0.62rem;letter-spacing:0.2em;text-transform:uppercase;padding:1rem}
 .video-ph svg{display:block;margin:0 auto 0.8rem}
 .teaser-title{font-family:'Playfair Display',serif;font-size:1rem;font-weight:500;margin:1rem 0 0.3rem}
@@ -244,7 +257,7 @@ footer{text-align:center;padding:2.5rem 4rem;border-top:1px solid var(--border)}
   nav{padding:1.3rem 1.5rem}
   .nav-tag{display:none}
   section{padding:4rem 1.5rem}
-  .hero{padding:7.5rem 1.5rem 3.5rem}
+  .hero{padding:7.5rem 1.5rem 3.5rem;min-height:80vh}
   .disclaimer-strip{padding:1.2rem 1.5rem}
   .bab-grid{grid-template-columns:1fr}
   .pkg-grid{grid-template-columns:1fr}
@@ -269,14 +282,20 @@ footer{text-align:center;padding:2.5rem 4rem;border-top:1px solid var(--border)}
 
 <!-- ══ HERO ══ -->
 <header class="hero">
-  <span class="hero-eyebrow fade-up">ZuzzTherapy Education</span>
-  <h1 class="fade-up">Belajar Jadi <em>Terapis Klinikal</em> Bersama ZuzzTherapy.</h1>
-  <p class="hero-sub fade-up">
-    Kursus video pembelajaran kendiri — kuasai hands-on technique, muscle anatomy, dan ketepatan klinikal yang sama kami guna dalam sesi rawatan sebenar. Dari asas teknik, hingga bina kerjaya sebagai pengamal bodywork moden.
-  </p>
-  <div class="hero-btns fade-up">
-    <a href="#pembukaan" class="btn-primary">Tonton Video Pembukaan</a>
-    <a href="#silibus" class="btn-outline">Lihat Silibus</a>
+  <video class="hero-bg" autoplay muted loop playsinline preload="auto" poster="hero-bg-poster.jpg" aria-hidden="true">
+    <source src="hero-bg.mp4" type="video/mp4"/>
+  </video>
+  <div class="hero-overlay" aria-hidden="true"></div>
+  <div class="hero-inner">
+    <span class="hero-eyebrow fade-up">ZuzzTherapy Education</span>
+    <h1 class="fade-up">Belajar Jadi <em>Terapis Klinikal</em> Bersama ZuzzTherapy.</h1>
+    <p class="hero-sub fade-up">
+      Kursus video pembelajaran kendiri: kuasai anatomi otot, teknik hands-on, dan saringan keselamatan yang sama kami guna dalam sesi rawatan sebenar. Dari asas teknik, hingga bina kerjaya sebagai terapis klinikal.
+    </p>
+    <div class="hero-btns fade-up">
+      <a href="#silibus" class="btn-primary">Apa Yang Anda Akan Dapat?</a>
+      <a href="#pakej" class="btn-outline">Lihat Pakej</a>
+    </div>
   </div>
 </header>
 
@@ -287,24 +306,24 @@ footer{text-align:center;padding:2.5rem 4rem;border-top:1px solid var(--border)}
       <p class="quote">"Ini bukan urut biasa. Ini terapi klinikal."</p>
       <p>Sebelum anda belajar satu teknik pun, kenali dulu cara kami berfikir: <strong>nilai dahulu, faham struktur otot, baru tangan bergerak</strong>. Bukan sekadar menggosok dan menekan. Kursus ini disusun untuk tukang urut yang mahu naik taraf, dan juga untuk sesiapa yang mahu mula dari kosong dengan asas yang betul.</p>
     </div>
-    <div class="section-label fade-up">Tonton Video Pembukaan</div>
+    <div class="section-label fade-up">Kenali Kursus Ini</div>
     <div class="teaser-grid fade-up">
       <div class="teaser-card">
         <div class="video-slot">
-          <!-- GANTI: letak iframe YouTube Unlisted di sini, contoh:
-          <iframe src="https://www.youtube.com/embed/ID_VIDEO" title="Video pembukaan" allowfullscreen></iframe> -->
+          <!-- GANTI: letak video "Untuk Siapa Kursus Ini?" di sini -->
           <div class="video-ph"><svg width="34" height="34" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.2"><circle cx="12" cy="12" r="10"/><path d="M10 8.5l6 3.5-6 3.5z" stroke-linejoin="round"/></svg>Video akan dimuat naik</div>
         </div>
-        <h3 class="teaser-title">Video Pembukaan</h3>
-        <p class="teaser-desc">Kenapa kursus ini wujud, dan apa beza terapi klinikal dengan urutan biasa.</p>
+        <h3 class="teaser-title">Untuk Siapa Kursus Ini?</h3>
+        <p class="teaser-desc">Siapa yang sesuai menyertai kursus ini, dan apa beza terapi klinikal dengan urutan biasa.</p>
       </div>
       <div class="teaser-card">
         <div class="video-slot">
-          <!-- GANTI: iframe YouTube Unlisted video contoh teknik -->
-          <div class="video-ph"><svg width="34" height="34" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.2"><circle cx="12" cy="12" r="10"/><path d="M10 8.5l6 3.5-6 3.5z" stroke-linejoin="round"/></svg>Video akan dimuat naik</div>
+          <video controls playsinline preload="none" poster="teknik-supraspinatus-poster.jpg">
+            <source src="teknik-supraspinatus.mp4" type="video/mp4"/>
+          </video>
         </div>
-        <h3 class="teaser-title">Contoh Satu Teknik</h3>
-        <p class="teaser-desc">Rasa sendiri gaya pengajaran kami sebelum anda membuat keputusan.</p>
+        <h3 class="teaser-title">Contoh Satu Teknik: Supraspinatus</h3>
+        <p class="teaser-desc">Video penuh dari dalam kursus. Rasa sendiri gaya pengajaran kami sebelum anda membuat keputusan.</p>
       </div>
     </div>
   </div>
@@ -315,47 +334,54 @@ footer{text-align:center;padding:2.5rem 4rem;border-top:1px solid var(--border)}
   <div class="container">
     <div class="section-label fade-up">Apa Yang Akan Anda Pelajari</div>
     <p class="section-intro fade-up">
-      Silibus disusun ikut <strong>kawasan badan dan otot</strong>, sama seperti cara kami menilai pesakit. Setiap video otot mengandungi <strong>origin &amp; insertion, trigger point, sakit rujukan, teknik rawatan</strong> dan tanda bahaya. Video bertanda <span class="bab-tag" style="margin-left:0">Pakej 2</span> hanya ada dalam Pakej 2. Modul dikeluarkan <strong>secara berperingkat</strong> dan menjadi kemaskini percuma untuk semua pembeli sedia ada.
+      Silibus disusun dalam <strong>12 modul</strong>, ikut kawasan badan dan otot, sama seperti cara kami menilai pesakit. Setiap otot ada <strong>video penerangan</strong> (origin &amp; insertion, trigger point, sakit rujukan) dan <strong>video teknik praktikal</strong>. Modul bertanda <span class="bab-tag" style="margin-left:0">Pakej 2</span> hanya ada dalam Pakej 2. Modul dikeluarkan <strong>secara berperingkat</strong> dan menjadi kemaskini percuma untuk semua pembeli sedia ada.
     </p>
 
     <div class="module-block fade-up">
       <div class="module-head">
-        <h3 class="module-title">Fasa 1 &middot; Asas Klinikal <span>Pakej 1 &amp; 2</span></h3>
+        <h3 class="module-title">Modul 00 &middot; Asas <span>Pakej 1 &amp; 2</span></h3>
       </div>
       <div class="bab-grid">
         <div class="bab-item">
           <span class="bab-num">01</span>
           <div>
-            <p class="bab-name">Konsep Asas: Spasm, Otot Tegang &amp; Trigger Point</p>
-            <p class="bab-desc">Apa bezanya, kenapa trigger point terbentuk, dan kenapa sakit boleh dirasa jauh dari puncanya.</p>
+            <p class="bab-name">Pengenalan Kursus</p>
+            <p class="bab-desc">Apa yang anda akan belajar, dan cara terbaik guna kursus ini.</p>
           </div>
         </div>
         <div class="bab-item">
           <span class="bab-num">02</span>
           <div>
-            <p class="bab-name">Mitos Dalam Dunia Urutan</p>
-            <p class="bab-desc">Istilah seperti &ldquo;urat angin&rdquo; dan &ldquo;masuk angin&rdquo;: apa yang diketahui dari sudut otot dan saraf.</p>
+            <p class="bab-name">Apa Itu Terapi Klinikal?</p>
+            <p class="bab-desc">Beza terapi klinikal, fisioterapi dan urutan relaksasi.</p>
           </div>
         </div>
         <div class="bab-item">
           <span class="bab-num">03</span>
+          <div>
+            <p class="bab-name">Arah &amp; Pergerakan Badan</p>
+            <p class="bab-desc">Bahasa anatomi asas yang digunakan sepanjang kursus.</p>
+          </div>
+        </div>
+        <div class="bab-item">
+          <span class="bab-num">04</span>
           <div>
             <p class="bab-name">Origin &amp; Insertion Otot</p>
             <p class="bab-desc">Kenapa arah tekanan mesti ikut struktur otot, bukan sekadar &ldquo;gosok kuat&rdquo;.</p>
           </div>
         </div>
         <div class="bab-item">
-          <span class="bab-num">04</span>
+          <span class="bab-num">05</span>
           <div>
-            <p class="bab-name">Jenis Kontraksi Otot</p>
-            <p class="bab-desc">Concentric, Eccentric &amp; Isometric: kenapa otot yang teregang pun boleh sakit.</p>
+            <p class="bab-name">Spasm, Otot Tegang &amp; Trigger Point</p>
+            <p class="bab-desc">Kenapa sakit boleh dirasa jauh dari puncanya.</p>
           </div>
         </div>
         <div class="bab-item">
-          <span class="bab-num">05</span>
+          <span class="bab-num">06</span>
           <div>
-            <p class="bab-name">Red Flags &mdash; Saringan Keselamatan</p>
-            <p class="bab-desc">Bila perlu rujuk doktor dan bila tidak boleh merawat, termasuk sakit dari organ dalaman (GERD, resdung) yang menyerupai sakit otot.</p>
+            <p class="bab-name">Jenis Kontraksi Otot</p>
+            <p class="bab-desc">Concentric, eccentric &amp; isometric: kenapa otot yang teregang pun boleh sakit.</p>
           </div>
         </div>
       </div>
@@ -363,244 +389,219 @@ footer{text-align:center;padding:2.5rem 4rem;border-top:1px solid var(--border)}
 
     <div class="module-block fade-up">
       <div class="module-head">
-        <h3 class="module-title">Fasa 2 &middot; Upper Body <span>Penerangan &amp; Teknik</span></h3>
+        <h3 class="module-title">Modul 01 &middot; Leher &amp; Kepala <span>Penerangan &amp; teknik</span></h3>
       </div>
-      <p class="submod-title">Leher &amp; Kepala <span>&middot; 9 video</span></p>
       <div class="bab-grid">
         <div class="bab-item">
-          <span class="bab-num">06</span>
-          <div>
-            <p class="bab-name">Anterior Scalene</p>
-            <p class="bab-desc">Kebas tangan &amp; sakit rujukan ke dada atas (selepas saringan red flag)</p>
-          </div>
-        </div>
-        <div class="bab-item">
           <span class="bab-num">07</span>
-          <div>
-            <p class="bab-name">Middle Scalene</p>
-            <p class="bab-desc">Sakit belikat yang puncanya di leher</p>
-          </div>
-        </div>
-        <div class="bab-item">
-          <span class="bab-num">08</span>
-          <div>
-            <p class="bab-name">Levator Scapulae</p>
-            <p class="bab-desc">Leher kaku, susah toleh kepala</p>
-          </div>
-        </div>
-        <div class="bab-item">
-          <span class="bab-num">09</span>
-          <div>
-            <p class="bab-name">Semispinalis Capitis</p>
-            <p class="bab-desc">Sakit berjalur di belakang kepala</p>
-          </div>
-        </div>
-        <div class="bab-item">
-          <span class="bab-num">10</span>
-          <div>
-            <p class="bab-name">Splenius Capitis</p>
-            <p class="bab-desc">Sakit di bahagian atas kepala</p>
-          </div>
-        </div>
-        <div class="bab-item">
-          <span class="bab-num">11</span>
-          <div>
-            <p class="bab-name">Splenius Cervicis</p>
-            <p class="bab-desc">Sakit pundak &amp; tekanan di belakang mata</p>
-          </div>
-        </div>
-        <div class="bab-item">
-          <span class="bab-num">12</span>
-          <div>
-            <p class="bab-name">Suboccipital</p>
-            <p class="bab-desc">Tegang pangkal tengkorak bila asyik tunduk skrin</p>
-          </div>
-        </div>
-        <div class="bab-item">
-          <span class="bab-num">13</span>
           <div>
             <p class="bab-name">Masseter</p>
             <p class="bab-desc">Rahang ketat, sakit gigi &amp; telinga</p>
           </div>
         </div>
         <div class="bab-item">
-          <span class="bab-num">14</span>
+          <span class="bab-num">08</span>
           <div>
             <p class="bab-name">SCM (Sternocleidomastoid)</p>
             <p class="bab-desc">Sakit kepala, pelipis &amp; sekitar mata</p>
           </div>
         </div>
-      </div>
-      <p class="submod-title">Bahu &amp; Skapula <span>&middot; 8 video</span></p>
-      <div class="bab-grid">
         <div class="bab-item">
-          <span class="bab-num">15</span>
+          <span class="bab-num">09</span>
           <div>
-            <p class="bab-name">Trapezius</p>
-            <p class="bab-desc">Pengenalan: satu otot, tiga bahagian, tiga kerja</p>
+            <p class="bab-name">Anterior Scalene</p>
+            <p class="bab-desc">Kebas tangan &amp; sakit rujukan ke dada atas</p>
           </div>
         </div>
         <div class="bab-item">
-          <span class="bab-num">16</span>
+          <span class="bab-num">10</span>
+          <div>
+            <p class="bab-name">Middle Scalene</p>
+            <p class="bab-desc">Sakit belikat yang puncanya di leher</p>
+          </div>
+        </div>
+        <div class="bab-item">
+          <span class="bab-num">11</span>
           <div>
             <p class="bab-name">Upper Trapezius</p>
             <p class="bab-desc">Bahu berat &amp; sakit kepala sisi</p>
           </div>
         </div>
         <div class="bab-item">
-          <span class="bab-num">17</span>
+          <span class="bab-num">12</span>
+          <div>
+            <p class="bab-name">Levator Scapulae</p>
+            <p class="bab-desc">Leher kaku, susah toleh kepala</p>
+          </div>
+        </div>
+        <div class="bab-item">
+          <span class="bab-num">13</span>
+          <div>
+            <p class="bab-name">Splenius Capitis &amp; Cervicis</p>
+            <p class="bab-desc">Sakit atas kepala, pundak &amp; belakang mata</p>
+          </div>
+        </div>
+        <div class="bab-item">
+          <span class="bab-num">14</span>
+          <div>
+            <p class="bab-name">Semispinalis Capitis</p>
+            <p class="bab-desc">Sakit berjalur di belakang kepala</p>
+          </div>
+        </div>
+        <div class="bab-item">
+          <span class="bab-num">15</span>
+          <div>
+            <p class="bab-name">Suboccipital</p>
+            <p class="bab-desc">Tegang pangkal tengkorak bila asyik tunduk skrin</p>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="module-block fade-up">
+      <div class="module-head">
+        <h3 class="module-title">Modul 02 &middot; Bahu &amp; Rotator Cuff <span>Penerangan &amp; teknik</span></h3>
+      </div>
+      <div class="bab-grid">
+        <div class="bab-item">
+          <span class="bab-num">16</span>
           <div>
             <p class="bab-name">Middle Trapezius</p>
             <p class="bab-desc">Rasa terbakar di antara belikat</p>
           </div>
         </div>
         <div class="bab-item">
-          <span class="bab-num">18</span>
+          <span class="bab-num">17</span>
           <div>
             <p class="bab-name">Lower Trapezius</p>
             <p class="bab-desc">Kunci supaya upper trap tak tegang balik</p>
           </div>
         </div>
         <div class="bab-item">
-          <span class="bab-num">19</span>
-          <div>
-            <p class="bab-name">Pectoralis Minor</p>
-            <p class="bab-desc">Bahu bengkok ke depan &amp; sakit belikat berulang</p>
-          </div>
-        </div>
-        <div class="bab-item">
-          <span class="bab-num">20</span>
-          <div>
-            <p class="bab-name">Subclavius</p>
-            <p class="bab-desc">Otot kecil di bawah tulang selangka</p>
-          </div>
-        </div>
-        <div class="bab-item">
-          <span class="bab-num">21</span>
+          <span class="bab-num">18</span>
           <div>
             <p class="bab-name">Rhomboid</p>
             <p class="bab-desc">Sakit belikat: cari punca sebenar</p>
           </div>
         </div>
         <div class="bab-item">
-          <span class="bab-num">22</span>
-          <div>
-            <p class="bab-name">Serratus Anterior</p>
-            <p class="bab-desc">Otot sisi rusuk yang sering terlepas pandang</p>
-          </div>
-        </div>
-      </div>
-      <p class="submod-title">Rotator Cuff &amp; Sendi Bahu <span>&middot; 7 video</span></p>
-      <div class="bab-grid">
-        <div class="bab-item">
-          <span class="bab-num">23</span>
+          <span class="bab-num">19</span>
           <div>
             <p class="bab-name">Supraspinatus</p>
             <p class="bab-desc">Sakit bila angkat tangan ke sisi</p>
           </div>
         </div>
         <div class="bab-item">
-          <span class="bab-num">24</span>
+          <span class="bab-num">20</span>
           <div>
             <p class="bab-name">Infraspinatus</p>
             <p class="bab-desc">Sakit depan bahu, punca di belakang</p>
           </div>
         </div>
         <div class="bab-item">
-          <span class="bab-num">25</span>
+          <span class="bab-num">21</span>
           <div>
             <p class="bab-name">Teres Minor</p>
             <p class="bab-desc">Titik sakit dalam di belakang bahu</p>
           </div>
         </div>
         <div class="bab-item">
-          <span class="bab-num">26</span>
+          <span class="bab-num">22</span>
           <div>
             <p class="bab-name">Subscapularis</p>
             <p class="bab-desc">Bahu kaku, susah angkat tangan tinggi</p>
           </div>
         </div>
         <div class="bab-item">
-          <span class="bab-num">27</span>
+          <span class="bab-num">23</span>
           <div>
             <p class="bab-name">Teres Major</p>
             <p class="bab-desc">Tangan tak boleh naik rapat ke telinga</p>
           </div>
         </div>
         <div class="bab-item">
-          <span class="bab-num">28</span>
+          <span class="bab-num">24</span>
           <div>
             <p class="bab-name">Latissimus Dorsi</p>
             <p class="bab-desc">Lenguh bawah belikat sepanjang hari</p>
           </div>
         </div>
         <div class="bab-item">
-          <span class="bab-num">29</span>
+          <span class="bab-num">25</span>
           <div>
-            <p class="bab-name">Deltoid</p>
-            <p class="bab-desc">Peta sakit bahu: mangsa atau punca?</p>
+            <p class="bab-name">Serratus Anterior</p>
+            <p class="bab-desc">Otot sisi rusuk yang sering terlepas pandang</p>
+          </div>
+        </div>
+        <div class="bab-item">
+          <span class="bab-num">26</span>
+          <div>
+            <p class="bab-name">Pectoralis Minor</p>
+            <p class="bab-desc">Bahu bengkok ke depan &amp; sakit belikat berulang</p>
+          </div>
+        </div>
+        <div class="bab-item">
+          <span class="bab-num">27</span>
+          <div>
+            <p class="bab-name">Subclavius</p>
+            <p class="bab-desc">Otot kecil di bawah tulang selangka</p>
           </div>
         </div>
       </div>
-      <p class="submod-title">Lengan Atas <span>&middot; 3 video</span></p>
+    </div>
+
+    <div class="module-block fade-up">
+      <div class="module-head">
+        <h3 class="module-title">Modul 03 &middot; Lengan <span>Penerangan &amp; teknik</span></h3>
+      </div>
       <div class="bab-grid">
         <div class="bab-item">
-          <span class="bab-num">30</span>
+          <span class="bab-num">28</span>
           <div>
             <p class="bab-name">Biceps Brachii &amp; Coracobrachialis</p>
-            <p class="bab-desc">Sakit depan bahu &amp; siku, bersama jiran yang selalu ikut tegang</p>
+            <p class="bab-desc">Sakit depan bahu &amp; siku</p>
           </div>
         </div>
         <div class="bab-item">
-          <span class="bab-num">31</span>
+          <span class="bab-num">29</span>
           <div>
             <p class="bab-name">Brachialis</p>
             <p class="bab-desc">Sakit depan siku &amp; pangkal ibu jari</p>
           </div>
         </div>
         <div class="bab-item">
-          <span class="bab-num">32</span>
+          <span class="bab-num">30</span>
           <div>
             <p class="bab-name">Triceps Brachii</p>
             <p class="bab-desc">Sakit belakang lengan &amp; siku</p>
           </div>
         </div>
-      </div>
-      <p class="submod-title">Lengan Bawah &amp; Tangan <span>&middot; 5 video</span></p>
-      <div class="bab-grid">
         <div class="bab-item">
-          <span class="bab-num">33</span>
-          <div>
-            <p class="bab-name">Kumpulan Ekstensor &mdash; Tennis Elbow</p>
-            <p class="bab-desc">Sakit siku bahagian luar</p>
-          </div>
-        </div>
-        <div class="bab-item">
-          <span class="bab-num">34</span>
-          <div>
-            <p class="bab-name">Kumpulan Fleksor &mdash; Golfer&rsquo;s Elbow</p>
-            <p class="bab-desc">Sakit siku bahagian dalam</p>
-          </div>
-        </div>
-        <div class="bab-item">
-          <span class="bab-num">35</span>
+          <span class="bab-num">31</span>
           <div>
             <p class="bab-name">Supinator &amp; Brachioradialis</p>
             <p class="bab-desc">Sakit bila memulas tombol &amp; mengangkat barang</p>
           </div>
         </div>
         <div class="bab-item">
-          <span class="bab-num">36</span>
+          <span class="bab-num">32</span>
           <div>
-            <p class="bab-name">Pronator Teres</p>
-            <p class="bab-desc">Sakit lengan bawah bila memusing pergelangan</p>
+            <p class="bab-name">Kumpulan Ekstensor: Tennis Elbow</p>
+            <p class="bab-desc">Sakit siku bahagian luar</p>
           </div>
         </div>
         <div class="bab-item">
-          <span class="bab-num">37</span>
+          <span class="bab-num">33</span>
           <div>
-            <p class="bab-name">Otot Ibu Jari &amp; Tangan</p>
-            <p class="bab-desc">Lenguh tangan pengguna telefon &amp; pekerja tangan</p>
+            <p class="bab-name">Kumpulan Fleksor &amp; Pronator Teres: Golfer&rsquo;s Elbow</p>
+            <p class="bab-desc">Sakit siku bahagian dalam</p>
+          </div>
+        </div>
+        <div class="bab-item">
+          <span class="bab-num">34</span>
+          <div>
+            <p class="bab-name">Flexor Digitorum Superficialis</p>
+            <p class="bab-desc">Lenguh lengan bawah pekerja tangan</p>
           </div>
         </div>
       </div>
@@ -608,160 +609,135 @@ footer{text-align:center;padding:2.5rem 4rem;border-top:1px solid var(--border)}
 
     <div class="module-block fade-up">
       <div class="module-head">
-        <h3 class="module-title">Fasa 3 &middot; Lower Body <span>Penerangan &amp; Teknik</span></h3>
+        <h3 class="module-title">Modul 04 &middot; Belakang &amp; Pinggang <span>Penerangan &amp; teknik</span></h3>
       </div>
-      <p class="submod-title">Belakang, Pinggang &amp; Pelvis <span>&middot; 3 video</span></p>
       <div class="bab-grid">
         <div class="bab-item">
-          <span class="bab-num">38</span>
+          <span class="bab-num">35</span>
+          <div>
+            <p class="bab-name">Erector Spinae</p>
+            <p class="bab-desc">Tiga beradik dari pinggang ke leher</p>
+          </div>
+        </div>
+        <div class="bab-item">
+          <span class="bab-num">36</span>
           <div>
             <p class="bab-name">Quadratus Lumborum (QL)</p>
             <p class="bab-desc">Pinggang ketat bila bangun dari duduk</p>
           </div>
         </div>
+      </div>
+    </div>
+
+    <div class="module-block fade-up">
+      <div class="module-head">
+        <h3 class="module-title">Modul 05 &middot; Pinggul &amp; Peha <span>Penerangan &amp; teknik</span></h3>
+      </div>
+      <div class="bab-grid">
         <div class="bab-item">
-          <span class="bab-num">39</span>
-          <div>
-            <p class="bab-name">Erector Spinae: Iliocostalis, Longissimus &amp; Spinalis</p>
-            <p class="bab-desc">Tiga beradik dari pinggang ke leher, termasuk fascia torakolumbar sebagai penghubung</p>
-          </div>
-        </div>
-        <div class="bab-item">
-          <span class="bab-num">40</span>
+          <span class="bab-num">37</span>
           <div>
             <p class="bab-name">Iliopsoas</p>
             <p class="bab-desc">Pinggul depan ketat selepas duduk lama</p>
           </div>
         </div>
-      </div>
-      <p class="submod-title">Pinggul &amp; Punggung <span>&middot; 5 video</span></p>
-      <div class="bab-grid">
         <div class="bab-item">
-          <span class="bab-num">41</span>
+          <span class="bab-num">38</span>
           <div>
-            <p class="bab-name">Gluteus Maximus</p>
-            <p class="bab-desc">Sakit punggung bila duduk lama</p>
+            <p class="bab-name">Gluteus Maximus, Medius &amp; Minimus</p>
+            <p class="bab-desc">Sakit punggung, sisi pinggul &amp; sakit menjalar ke kaki</p>
           </div>
         </div>
         <div class="bab-item">
-          <span class="bab-num">42</span>
-          <div>
-            <p class="bab-name">Gluteus Medius</p>
-            <p class="bab-desc">Sakit sisi pinggul &amp; pinggang</p>
-          </div>
-        </div>
-        <div class="bab-item">
-          <span class="bab-num">43</span>
-          <div>
-            <p class="bab-name">Gluteus Minimus</p>
-            <p class="bab-desc">Sakit menjalar ke kaki yang menyerupai sciatica</p>
-          </div>
-        </div>
-        <div class="bab-item">
-          <span class="bab-num">44</span>
+          <span class="bab-num">39</span>
           <div>
             <p class="bab-name">Piriformis &amp; Deep Hip Rotators</p>
-            <p class="bab-desc">Sakit dalam punggung yang menjalar ke kaki</p>
+            <p class="bab-desc">Sakit dalam punggung yang menyerupai sciatica</p>
           </div>
         </div>
         <div class="bab-item">
-          <span class="bab-num">45</span>
+          <span class="bab-num">40</span>
           <div>
             <p class="bab-name">TFL &amp; IT Band</p>
             <p class="bab-desc">Paha luar tegang selepas jalan atau lari jauh</p>
           </div>
         </div>
-      </div>
-      <p class="submod-title">Peha <span>&middot; 4 video</span></p>
-      <div class="bab-grid">
         <div class="bab-item">
-          <span class="bab-num">46</span>
+          <span class="bab-num">41</span>
           <div>
-            <p class="bab-name">Quadriceps: Rectus Femoris, Vastus Lateralis, Vastus Medialis &amp; Vastus Intermedius</p>
-            <p class="bab-desc">Empat beradik depan peha: sakit lutut, peha depan &amp; susah naik tangga</p>
+            <p class="bab-name">Adductor, Pectineus &amp; Gracilis</p>
+            <p class="bab-desc">Sakit pangkal peha &amp; lutut bahagian dalam</p>
           </div>
         </div>
         <div class="bab-item">
-          <span class="bab-num">47</span>
+          <span class="bab-num">42</span>
           <div>
-            <p class="bab-name">Hamstring: Biceps Femoris, Semitendinosus &amp; Semimembranosus</p>
+            <p class="bab-name">Quadriceps</p>
+            <p class="bab-desc">Sakit lutut, peha depan &amp; susah naik tangga</p>
+          </div>
+        </div>
+        <div class="bab-item">
+          <span class="bab-num">43</span>
+          <div>
+            <p class="bab-name">Hamstring</p>
             <p class="bab-desc">Belakang peha ketat &amp; sakit bila duduk</p>
           </div>
         </div>
-        <div class="bab-item">
-          <span class="bab-num">48</span>
-          <div>
-            <p class="bab-name">Adductor &amp; Pectineus</p>
-            <p class="bab-desc">Sakit pangkal peha bahagian dalam</p>
-          </div>
-        </div>
-        <div class="bab-item">
-          <span class="bab-num">49</span>
-          <div>
-            <p class="bab-name">Sartorius &amp; Gracilis</p>
-            <p class="bab-desc">Sakit lutut bahagian dalam</p>
-          </div>
-        </div>
       </div>
-      <p class="submod-title">Lutut &amp; Betis <span>&middot; 6 video</span></p>
+    </div>
+
+    <div class="module-block fade-up">
+      <div class="module-head">
+        <h3 class="module-title">Modul 06 &middot; Lutut, Betis &amp; Kaki <span>Penerangan &amp; teknik</span></h3>
+      </div>
       <div class="bab-grid">
         <div class="bab-item">
-          <span class="bab-num">50</span>
+          <span class="bab-num">44</span>
           <div>
             <p class="bab-name">Popliteus</p>
             <p class="bab-desc">Sakit belakang lutut bila mencangkung atau turun tangga</p>
           </div>
         </div>
         <div class="bab-item">
-          <span class="bab-num">51</span>
+          <span class="bab-num">45</span>
           <div>
-            <p class="bab-name">Gastrocnemius &amp; Plantar Fasciitis</p>
-            <p class="bab-desc">Betis kejang &amp; tapak kaki sakit waktu pagi</p>
+            <p class="bab-name">Gastrocnemius &amp; Soleus</p>
+            <p class="bab-desc">Betis kejang, sakit tumit &amp; tapak kaki waktu pagi</p>
           </div>
         </div>
         <div class="bab-item">
-          <span class="bab-num">52</span>
-          <div>
-            <p class="bab-name">Soleus &amp; Plantar Fasciitis</p>
-            <p class="bab-desc">Betis dalam ketat &amp; sakit tumit</p>
-          </div>
-        </div>
-        <div class="bab-item">
-          <span class="bab-num">53</span>
+          <span class="bab-num">46</span>
           <div>
             <p class="bab-name">Tibialis Anterior</p>
             <p class="bab-desc">Sakit tulang kering bahagian depan</p>
           </div>
         </div>
         <div class="bab-item">
-          <span class="bab-num">54</span>
+          <span class="bab-num">47</span>
+          <div>
+            <p class="bab-name">Tibialis Posterior</p>
+            <p class="bab-desc">Sakit buku lali dalam &amp; tapak kaki</p>
+          </div>
+        </div>
+        <div class="bab-item">
+          <span class="bab-num">48</span>
           <div>
             <p class="bab-name">Peroneus Longus &amp; Brevis</p>
             <p class="bab-desc">Buku lali luar sakit &amp; mudah terseliuh</p>
           </div>
         </div>
         <div class="bab-item">
-          <span class="bab-num">55</span>
-          <div>
-            <p class="bab-name">Tibialis Posterior</p>
-            <p class="bab-desc">Sakit buku lali dalam &amp; tapak kaki</p>
-          </div>
-        </div>
-      </div>
-      <p class="submod-title">Kaki <span>&middot; 2 video</span></p>
-      <div class="bab-grid">
-        <div class="bab-item">
-          <span class="bab-num">56</span>
+          <span class="bab-num">49</span>
           <div>
             <p class="bab-name">Extensor Kaki (EDL &amp; EHL)</p>
             <p class="bab-desc">Sakit atas kaki &amp; jari kaki</p>
           </div>
         </div>
         <div class="bab-item">
-          <span class="bab-num">57</span>
+          <span class="bab-num">50</span>
           <div>
-            <p class="bab-name">Flexor Hallucis Longus</p>
-            <p class="bab-desc">Sakit bawah ibu jari kaki</p>
+            <p class="bab-name">Flexor Kaki (FDL &amp; FHL)</p>
+            <p class="bab-desc">Sakit bawah tapak &amp; jari kaki</p>
           </div>
         </div>
       </div>
@@ -769,49 +745,113 @@ footer{text-align:center;padding:2.5rem 4rem;border-top:1px solid var(--border)}
 
     <div class="module-block fade-up">
       <div class="module-head">
-        <h3 class="module-title">Fasa 4 &middot; Klinikal Lanjutan <span>Eksklusif Pakej 2</span></h3>
+        <h3 class="module-title">Modul 07 &middot; Red Flag &amp; Keselamatan <span>Pakej 1 &amp; 2</span></h3>
       </div>
       <div class="bab-grid">
         <div class="bab-item">
+          <span class="bab-num">51</span>
+          <div>
+            <p class="bab-name">6 Tanda Bahaya Sakit Belakang</p>
+            <p class="bab-desc">Bila sakit belakang sebenarnya kecemasan, dan wajib dirujuk.</p>
+          </div>
+        </div>
+        <div class="bab-item">
+          <span class="bab-num">52</span>
+          <div>
+            <p class="bab-name">Borang Assessment &amp; Saringan WhatsApp</p>
+            <p class="bab-desc">Soal siasat pesakit sebelum dan semasa sesi.</p>
+          </div>
+        </div>
+        <div class="bab-item">
+          <span class="bab-num">53</span>
+          <div>
+            <p class="bab-name">Radang Usus Besar</p>
+            <p class="bab-desc">Sakit perut yang menyerupai sakit otot.</p>
+          </div>
+        </div>
+        <div class="bab-item">
+          <span class="bab-num">54</span>
+          <div>
+            <p class="bab-name">DVT: Darah Beku Dalam Urat</p>
+            <p class="bab-desc">Sakit betis yang tak boleh diurut.</p>
+          </div>
+        </div>
+        <div class="bab-item">
+          <span class="bab-num">55</span>
+          <div>
+            <p class="bab-name">Kencing Manis</p>
+            <p class="bab-desc">Kenapa kaki yang kebas tak diurut.</p>
+          </div>
+        </div>
+        <div class="bab-item">
+          <span class="bab-num">56</span>
+          <div>
+            <p class="bab-name">Strok</p>
+            <p class="bab-desc">Siapa boleh dirawat, siapa wajib ditolak.</p>
+          </div>
+        </div>
+        <div class="bab-item">
+          <span class="bab-num">57</span>
+          <div>
+            <p class="bab-name">Autoimun SLE (Lupus)</p>
+            <p class="bab-desc">Sakit satu badan yang urut tak boleh selesaikan.</p>
+          </div>
+        </div>
+        <div class="bab-item">
           <span class="bab-num">58</span>
           <div>
-            <p class="bab-name">Thoracic Outlet (TOS) <span class="bab-tag">Pakej 2</span></p>
-            <p class="bab-desc">Tiga terowong saraf: scalene, subclavius &amp; pec minor</p>
+            <p class="bab-name">Bell&rsquo;s Palsy</p>
+            <p class="bab-desc">Muka herot sebelah: hospital dulu, bukan urut.</p>
           </div>
         </div>
         <div class="bab-item">
           <span class="bab-num">59</span>
           <div>
-            <p class="bab-name">BPPV Vertigo: Saringan, Ujian Dix-Hallpike &amp; Epley Manoeuvre <span class="bab-tag">Pakej 2</span></p>
-            <p class="bab-desc">Pening berpusing dari telinga dalam, bukan otot. Cara kenal pasti, bila wajib rujuk hospital, dan teknik Epley</p>
+            <p class="bab-name">Trigger Finger</p>
+            <p class="bab-desc">Jari tersangkut yang perlukan doktor.</p>
           </div>
         </div>
         <div class="bab-item">
           <span class="bab-num">60</span>
           <div>
-            <p class="bab-name">Kebas Tangan: Otot Di Sepanjang Laluan Saraf <span class="bab-tag">Pakej 2</span></p>
-            <p class="bab-desc">Median, radial &amp; ulnar: otot mana yang patut diperiksa bila jari tertentu kebas</p>
+            <p class="bab-name">Laluan Bertauliah: SKM &amp; KKM</p>
+            <p class="bab-desc">Gambaran laluan SKM dan pendaftaran pengamal di bawah KKM.</p>
           </div>
         </div>
+      </div>
+    </div>
+
+    <div class="module-block fade-up">
+      <div class="module-head">
+        <h3 class="module-title">Modul 08 &middot; Mitos &amp; Kes Pesakit <span class="bab-tag">Pakej 2</span></h3>
+      </div>
+      <div class="bab-grid">
         <div class="bab-item">
           <span class="bab-num">61</span>
           <div>
-            <p class="bab-name">Rantaian Kinetik (Kinetic Chain) <span class="bab-tag">Pakej 2</span></p>
-            <p class="bab-desc">Kenapa punca ketegangan kadang-kadang jauh dari tempat rasa sakit</p>
+            <p class="bab-name">Mitos Resdung</p>
+            <p class="bab-desc">Apa yang sebenarnya berlaku, dari sudut otot.</p>
           </div>
         </div>
         <div class="bab-item">
           <span class="bab-num">62</span>
           <div>
-            <p class="bab-name">Panduan Stretching &amp; Strength Selepas Rawatan <span class="bab-tag">Pakej 2</span></p>
-            <p class="bab-desc">Regang yang pendek, kuatkan yang lemah: latihan gym &amp; calisthenic untuk pesakit</p>
+            <p class="bab-name">Mitos GERD</p>
+            <p class="bab-desc">Bila sakit dada dan perut bukan dari otot.</p>
           </div>
         </div>
         <div class="bab-item">
           <span class="bab-num">63</span>
           <div>
-            <p class="bab-name">Borang Assessment &amp; Saringan WhatsApp <span class="bab-tag">Pakej 2</span></p>
-            <p class="bab-desc">Templat siasatan pesakit sebelum dan semasa sesi</p>
+            <p class="bab-name">Kisah Pesakit: Otot Lemah</p>
+            <p class="bab-desc">Kes sebenar, dan apa yang kami pelajari.</p>
+          </div>
+        </div>
+        <div class="bab-item">
+          <span class="bab-num">64</span>
+          <div>
+            <p class="bab-name">Bekam &amp; Fasdu Berlebihan</p>
+            <p class="bab-desc">Pening melayang yang bukan vertigo.</p>
           </div>
         </div>
       </div>
@@ -819,39 +859,56 @@ footer{text-align:center;padding:2.5rem 4rem;border-top:1px solid var(--border)}
 
     <div class="module-block fade-up">
       <div class="module-head">
-        <h3 class="module-title">Fasa 5 &middot; Falsafah, Operasi &amp; Pemasaran <span>Eksklusif Pakej 2</span></h3>
+        <h3 class="module-title">Modul 09 &middot; Klinikal Lanjutan <span class="bab-tag">Pakej 2</span></h3>
       </div>
       <div class="bab-grid">
         <div class="bab-item">
-          <span class="bab-num">64</span>
-          <div>
-            <p class="bab-name">Anatomi Dari Lensa Biomekanik Moden &amp; Fisiologi Tubuh <span class="bab-tag">Pakej 2</span></p>
-          </div>
-        </div>
-        <div class="bab-item">
           <span class="bab-num">65</span>
           <div>
-            <p class="bab-name">Sejarah Evolusi Terapi Manual <span class="bab-tag">Pakej 2</span></p>
-            <p class="bab-desc">Dari kaedah purba ke pendekatan moden</p>
+            <p class="bab-name">Slip Disk Cervical (Leher)</p>
+            <p class="bab-desc">Cakera, kebas jari &amp; apa yang terapis boleh bantu.</p>
           </div>
         </div>
         <div class="bab-item">
           <span class="bab-num">66</span>
           <div>
-            <p class="bab-name">Setup Studio Privasi Bajet Rendah &amp; Pemilihan Treatment Bed <span class="bab-tag">Pakej 2</span></p>
+            <p class="bab-name">Slip Disk Lumbar (Pinggang)</p>
+            <p class="bab-desc">Sciatica, dan bila wajib rujuk ke hospital.</p>
           </div>
         </div>
         <div class="bab-item">
           <span class="bab-num">67</span>
           <div>
-            <p class="bab-name">Strategi Content POV Klinikal <span class="bab-tag">Pakej 2</span></p>
-            <p class="bab-desc">Before &amp; After</p>
+            <p class="bab-name">Thoracic Outlet Syndrome (TOS)</p>
+            <p class="bab-desc">Tiga terowong saraf: scalene, subclavius &amp; pec minor.</p>
           </div>
         </div>
         <div class="bab-item">
           <span class="bab-num">68</span>
           <div>
-            <p class="bab-name">Pengurusan Pemasaran AI &amp; Jadual Post <span class="bab-tag">Pakej 2</span></p>
+            <p class="bab-name">Saraf Radial &amp; Ulnar</p>
+            <p class="bab-desc">Wrist drop, kebas kelingking &amp; tabiat puncanya.</p>
+          </div>
+        </div>
+        <div class="bab-item">
+          <span class="bab-num">69</span>
+          <div>
+            <p class="bab-name">Saraf Median &amp; Carpal Tunnel</p>
+            <p class="bab-desc">Kebas waktu malam &amp; Pronator Teres Syndrome.</p>
+          </div>
+        </div>
+        <div class="bab-item">
+          <span class="bab-num">70</span>
+          <div>
+            <p class="bab-name">Vertigo</p>
+            <p class="bab-desc">BPPV, pening dari leher, dan tanda strok.</p>
+          </div>
+        </div>
+        <div class="bab-item">
+          <span class="bab-num">71</span>
+          <div>
+            <p class="bab-name">BPPV: Praktikal</p>
+            <p class="bab-desc">Epley, Lempert &amp; Deep Head Hanging.</p>
           </div>
         </div>
       </div>
@@ -859,21 +916,43 @@ footer{text-align:center;padding:2.5rem 4rem;border-top:1px solid var(--border)}
 
     <div class="module-block fade-up">
       <div class="module-head">
-        <h3 class="module-title">Fasa 6 &middot; Laluan Bertauliah &amp; Praktikal <span>Pakej 1 &amp; 2</span></h3>
+        <h3 class="module-title">Modul 10 &middot; Selepas Rawatan <span class="bab-tag">Pakej 2</span></h3>
       </div>
       <div class="bab-grid">
         <div class="bab-item">
-          <span class="bab-num">69</span>
+          <span class="bab-num">72</span>
           <div>
-            <p class="bab-name">Laluan Bertauliah: SKM &amp; KKM</p>
-            <p class="bab-desc">Gambaran laluan SKM (kursus atau PPT) dan pendaftaran pengamal di bawah KKM.</p>
+            <p class="bab-name">Guide Senaman Pesakit Untuk Pemulihan</p>
+            <p class="bab-desc">Regang yang pendek, kuatkan yang lemah, supaya sakit tak berulang.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="module-block fade-up">
+      <div class="module-head">
+        <h3 class="module-title">Modul 11 &middot; Studio &amp; Bisnes <span class="bab-tag">Pakej 2</span></h3>
+      </div>
+      <div class="bab-grid">
+        <div class="bab-item">
+          <span class="bab-num">73</span>
+          <div>
+            <p class="bab-name">Setup Bilik Rawatan Profesional &amp; Pemilihan Katil</p>
+            <p class="bab-desc">Saiz bilik, lampu, suhu, poster anatomi &amp; jenis katil.</p>
           </div>
         </div>
         <div class="bab-item">
-          <span class="bab-num">70</span>
+          <span class="bab-num">74</span>
           <div>
-            <p class="bab-name">Ujian Praktikal &amp; Bilangan Pesakit</p>
-            <p class="bab-desc">Berlatih pada keluarga &amp; rakan. Kemahiran diukur pada bilangan pesakit yang dirawat, bukan tempoh tahun bertugas.</p>
+            <p class="bab-name">Psikologi Harga Rawatan</p>
+            <p class="bab-desc">Berapa nak caj, dan kenapa jangan terlalu murah.</p>
+          </div>
+        </div>
+        <div class="bab-item">
+          <span class="bab-num">75</span>
+          <div>
+            <p class="bab-name">Cara Buat Content Yang Betul</p>
+            <p class="bab-desc">Hook, audio, kapsyen &amp; cara algoritma menolak video anda.</p>
           </div>
         </div>
       </div>
@@ -905,11 +984,10 @@ footer{text-align:center;padding:2.5rem 4rem;border-top:1px solid var(--border)}
         <div class="pkg-divider"></div>
         <span class="pkg-get">Anda akan dapat</span>
         <ul class="pkg-list">
-          <li><svg width="13" height="13" viewBox="0 0 13 13" fill="none" stroke="#344235" stroke-width="1.7"><path d="M2 7l3 3 6-6.5" stroke-linecap="round" stroke-linejoin="round"/></svg>50+ video penerangan &amp; teknik, upper body &amp; lower body</li>
-          <li><svg width="13" height="13" viewBox="0 0 13 13" fill="none" stroke="#344235" stroke-width="1.7"><path d="M2 7l3 3 6-6.5" stroke-linecap="round" stroke-linejoin="round"/></svg>Konsep asas: spasm, otot tegang, trigger point &amp; mitos dunia urutan</li>
-          <li><svg width="13" height="13" viewBox="0 0 13 13" fill="none" stroke="#344235" stroke-width="1.7"><path d="M2 7l3 3 6-6.5" stroke-linecap="round" stroke-linejoin="round"/></svg>Origin &amp; Insertion dan jenis kontraksi otot</li>
-          <li><svg width="13" height="13" viewBox="0 0 13 13" fill="none" stroke="#344235" stroke-width="1.7"><path d="M2 7l3 3 6-6.5" stroke-linecap="round" stroke-linejoin="round"/></svg>Red flag &amp; saringan keselamatan pesakit</li>
-          <li><svg width="13" height="13" viewBox="0 0 13 13" fill="none" stroke="#344235" stroke-width="1.7"><path d="M2 7l3 3 6-6.5" stroke-linecap="round" stroke-linejoin="round"/></svg>Penerangan laluan bertauliah SKM/KKM &amp; ujian praktikal</li>
+          <li><svg width="13" height="13" viewBox="0 0 13 13" fill="none" stroke="#344235" stroke-width="1.7"><path d="M2 7l3 3 6-6.5" stroke-linecap="round" stroke-linejoin="round"/></svg>80+ video penerangan &amp; teknik, upper body &amp; lower body</li>
+          <li><svg width="13" height="13" viewBox="0 0 13 13" fill="none" stroke="#344235" stroke-width="1.7"><path d="M2 7l3 3 6-6.5" stroke-linecap="round" stroke-linejoin="round"/></svg>Red flag &amp; saringan keselamatan: DVT, strok, kencing manis, SLE, Bell&rsquo;s palsy &amp; lain-lain</li>
+          <li><svg width="13" height="13" viewBox="0 0 13 13" fill="none" stroke="#344235" stroke-width="1.7"><path d="M2 7l3 3 6-6.5" stroke-linecap="round" stroke-linejoin="round"/></svg>Borang assessment &amp; saringan WhatsApp</li>
+          <li><svg width="13" height="13" viewBox="0 0 13 13" fill="none" stroke="#344235" stroke-width="1.7"><path d="M2 7l3 3 6-6.5" stroke-linecap="round" stroke-linejoin="round"/></svg>Penerangan laluan bertauliah SKM/KKM</li>
         </ul>
         <a href="https://wa.me/60174916815?text=Saya%20nak%20belajar%20urut%20-%20Pakej%201%20(RM390)" target="_blank" rel="noopener" class="btn-primary" style="display:block;text-align:center;width:100%">Daftar Pakej Ini</a>
       </div>
@@ -927,15 +1005,14 @@ footer{text-align:center;padding:2.5rem 4rem;border-top:1px solid var(--border)}
         <div class="pkg-divider"></div>
         <span class="pkg-get">Anda akan dapat</span>
         <ul class="pkg-list">
-          <li><svg width="13" height="13" viewBox="0 0 13 13" fill="none" stroke="#344235" stroke-width="1.7"><path d="M2 7l3 3 6-6.5" stroke-linecap="round" stroke-linejoin="round"/></svg>Semua dalam Pakej 1</li>
-          <li><svg width="13" height="13" viewBox="0 0 13 13" fill="none" stroke="#344235" stroke-width="1.7"><path d="M2 7l3 3 6-6.5" stroke-linecap="round" stroke-linejoin="round"/></svg>Thoracic Outlet (TOS) &amp; kebas tangan: otot di sepanjang laluan saraf</li>
-          <li><svg width="13" height="13" viewBox="0 0 13 13" fill="none" stroke="#344235" stroke-width="1.7"><path d="M2 7l3 3 6-6.5" stroke-linecap="round" stroke-linejoin="round"/></svg>BPPV vertigo: saringan, Dix-Hallpike &amp; Epley manoeuvre</li>
-          <li><svg width="13" height="13" viewBox="0 0 13 13" fill="none" stroke="#344235" stroke-width="1.7"><path d="M2 7l3 3 6-6.5" stroke-linecap="round" stroke-linejoin="round"/></svg>Rantaian kinetik (kinetic chain)</li>
-          <li><svg width="13" height="13" viewBox="0 0 13 13" fill="none" stroke="#344235" stroke-width="1.7"><path d="M2 7l3 3 6-6.5" stroke-linecap="round" stroke-linejoin="round"/></svg>Panduan stretching &amp; strength (gym/calisthenic) selepas rawatan</li>
-          <li><svg width="13" height="13" viewBox="0 0 13 13" fill="none" stroke="#344235" stroke-width="1.7"><path d="M2 7l3 3 6-6.5" stroke-linecap="round" stroke-linejoin="round"/></svg>Borang assessment &amp; saringan WhatsApp</li>
-          <li><svg width="13" height="13" viewBox="0 0 13 13" fill="none" stroke="#344235" stroke-width="1.7"><path d="M2 7l3 3 6-6.5" stroke-linecap="round" stroke-linejoin="round"/></svg>Falsafah, sejarah &amp; anatomi dari lensa biomekanik moden</li>
-          <li><svg width="13" height="13" viewBox="0 0 13 13" fill="none" stroke="#344235" stroke-width="1.7"><path d="M2 7l3 3 6-6.5" stroke-linecap="round" stroke-linejoin="round"/></svg>Setup studio privasi bajet rendah</li>
-          <li><svg width="13" height="13" viewBox="0 0 13 13" fill="none" stroke="#344235" stroke-width="1.7"><path d="M2 7l3 3 6-6.5" stroke-linecap="round" stroke-linejoin="round"/></svg>Strategi content &amp; pemasaran AI</li>
+          <li><svg width="13" height="13" viewBox="0 0 13 13" fill="none" stroke="#344235" stroke-width="1.7"><path d="M2 7l3 3 6-6.5" stroke-linecap="round" stroke-linejoin="round"/></svg>100+ video, termasuk semua dalam Pakej 1</li>
+          <li><svg width="13" height="13" viewBox="0 0 13 13" fill="none" stroke="#344235" stroke-width="1.7"><path d="M2 7l3 3 6-6.5" stroke-linecap="round" stroke-linejoin="round"/></svg>Klinikal lanjutan: slip disk, TOS &amp; kebas tangan (saraf median, radial &amp; ulnar)</li>
+          <li><svg width="13" height="13" viewBox="0 0 13 13" fill="none" stroke="#344235" stroke-width="1.7"><path d="M2 7l3 3 6-6.5" stroke-linecap="round" stroke-linejoin="round"/></svg>Vertigo &amp; BPPV: penerangan dan praktikal Epley, Lempert &amp; Deep Head Hanging</li>
+          <li><svg width="13" height="13" viewBox="0 0 13 13" fill="none" stroke="#344235" stroke-width="1.7"><path d="M2 7l3 3 6-6.5" stroke-linecap="round" stroke-linejoin="round"/></svg>Mitos &amp; kes pesakit sebenar</li>
+          <li><svg width="13" height="13" viewBox="0 0 13 13" fill="none" stroke="#344235" stroke-width="1.7"><path d="M2 7l3 3 6-6.5" stroke-linecap="round" stroke-linejoin="round"/></svg>Guide senaman kepada pesakit untuk pemulihan</li>
+          <li><svg width="13" height="13" viewBox="0 0 13 13" fill="none" stroke="#344235" stroke-width="1.7"><path d="M2 7l3 3 6-6.5" stroke-linecap="round" stroke-linejoin="round"/></svg>Cara setup bilik rawatan profesional &amp; pemilihan katil</li>
+          <li><svg width="13" height="13" viewBox="0 0 13 13" fill="none" stroke="#344235" stroke-width="1.7"><path d="M2 7l3 3 6-6.5" stroke-linecap="round" stroke-linejoin="round"/></svg>Psikologi harga rawatan</li>
+          <li><svg width="13" height="13" viewBox="0 0 13 13" fill="none" stroke="#344235" stroke-width="1.7"><path d="M2 7l3 3 6-6.5" stroke-linecap="round" stroke-linejoin="round"/></svg>Cara buat content yang betul ikut algoritma</li>
         </ul>
         <a href="https://wa.me/60174916815?text=Saya%20nak%20belajar%20urut%20-%20Pakej%202%20(RM550)" target="_blank" rel="noopener" class="btn-primary" style="display:block;text-align:center;width:100%;border-color:var(--olive);background:var(--olive)">Daftar Pakej Ini</a>
       </div>
@@ -990,11 +1067,11 @@ footer{text-align:center;padding:2.5rem 4rem;border-top:1px solid var(--border)}
     <div class="fade-up">
       <div class="faq-item">
         <div class="faq-q">Saya tiada pengalaman langsung — boleh belajar ke?</div>
-        <div class="faq-a">Boleh. Kursus dibina dari asas sains otot sebelum masuk ke teknik praktikal, jadi sesuai untuk pemula sepenuhnya.</div>
+        <div class="faq-a">Boleh. Kursus dibina dari asas anatomi otot sebelum masuk ke teknik praktikal, jadi sesuai untuk pemula sepenuhnya.</div>
       </div>
       <div class="faq-item">
         <div class="faq-q">Macam mana saya terima akses video selepas bayar?</div>
-        <div class="faq-a">Selepas bayaran disahkan melalui WhatsApp, kami akan hantar terus pautan akses video peribadi kepada anda.</div>
+        <div class="faq-a">Selepas bayaran disahkan melalui WhatsApp, kami akan daftarkan anda ke platform kursus. Anda akan terima emel dengan akaun login peribadi, dan boleh tonton di telefon atau komputer.</div>
       </div>
       <div class="faq-item">
         <div class="faq-q">Kalau saya beli sekarang, modul yang belum siap tu macam mana?</div>
